@@ -42,10 +42,15 @@
   .col { max-width: 1110px; margin: 0 auto; }
 
   /* ---------- Hero ---------- */
-  .hero { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 80px; padding: 80px 0 100px; align-items: start; }
+  .hero { min-height: calc(100svh - 86px); display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 80px; padding: 64px 0 80px; align-items: center; }
   .hero-left { max-width: 620px; }
   h1 { font-family: var(--heading); font-weight: 700; font-size: clamp(48px, 6.4vw, 90px); letter-spacing: -0.03em; line-height: 1; }
-  .role { font-family: var(--heading); font-weight: 600; font-size: clamp(22px, 2.3vw, 32px); margin: 28px 0 14px 6px; letter-spacing: -0.01em; }
+  .title-sequence { min-height: 2.05em; margin: 0 0 28px; font-size: clamp(48px, 7.2vw, 104px); line-height: .92; letter-spacing: -0.05em; }
+  .title-sequence__statement { display: block; }
+  .title-sequence__identities { display: block; position: relative; min-height: 1em; color: var(--accent); white-space: nowrap; }
+  .title-sequence__identity { position: absolute; left: 0; top: 0; opacity: 0; transform: translateX(18px) skewX(-4deg); transition: opacity .35s ease, transform .35s ease; }
+  .title-sequence__identity.is-active { opacity: 1; transform: translateX(0) skewX(0); }
+  .role { font-family: var(--heading); font-weight: 600; font-size: clamp(22px, 2.3vw, 32px); margin: 0 0 14px 6px; letter-spacing: -0.01em; }
   .pill {
     display: flex; align-items: center; justify-content: center; gap: 10px;
     width: 100%; max-width: 468px; background: var(--accent); color: #fff;
@@ -117,7 +122,7 @@
 
   /* ---------- Responsive ---------- */
   @media (max-width: 1000px) {
-    .hero { grid-template-columns: 1fr; gap: 56px; padding-top: 48px; }
+    .hero { min-height: auto; grid-template-columns: 1fr; gap: 56px; padding-top: 48px; }
     .intro-video { position: static; max-width: 360px; width: 100%; }
     .about { grid-template-columns: 1fr; }
   }
@@ -140,6 +145,9 @@
     .contact { padding: 90px 0 110px; }
     .contact .pill { padding: 18px 20px; font-size: 18px; }
   }
+  @media (prefers-reduced-motion: reduce) {
+    .title-sequence__identity { transition: none; }
+  }
 </style>
 </head>
 <body>
@@ -155,7 +163,16 @@
     <!-- ===== Hero ===== -->
     <section class="hero">
       <div class="hero-left">
-        <h1>Nikitta Putintsev</h1>
+        <h1 class="title-sequence" aria-label="I make the internet stop scrolling">
+          <span class="title-sequence__statement">I make the internet<br>stop scrolling.</span>
+          <span class="title-sequence__identities" aria-live="polite">
+            <span class="title-sequence__identity is-active">UGC CREATOR</span>
+            <span class="title-sequence__identity">VIDEO MAKER</span>
+            <span class="title-sequence__identity">TECH OBSESSED</span>
+            <span class="title-sequence__identity">PROFESSIONAL MENACE</span>
+            <span class="title-sequence__identity">NIKITTA PUTINTSEV</span>
+          </span>
+        </h1>
         <p class="role">UGC creator</p>
         <a class="pill" href="mailto:nikittaputintsev@gmail.com">
           <svg width="24" height="18" viewBox="0 0 24 18" fill="#fff" aria-hidden="true"><path d="M0 0h24v18H0z" opacity=".85"/><path d="M0 0l12 9 12-9" fill="none" stroke="#ff3b0a" stroke-width="1.5"/></svg>
@@ -257,6 +274,17 @@
 </main>
 
 <script>
+  (function () {
+    var identities = document.querySelectorAll('.title-sequence__identity');
+    if (identities.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var current = 0;
+    window.setInterval(function () {
+      identities[current].classList.remove('is-active');
+      current = (current + 1) % identities.length;
+      identities[current].classList.add('is-active');
+    }, 1900);
+  })();
+
   (function () {
     var btn = document.getElementById('copy-email');
     var hint = document.getElementById('copy-hint');
