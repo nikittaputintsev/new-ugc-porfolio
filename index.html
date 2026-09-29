@@ -67,6 +67,8 @@
   }
   .logo-tile img { height: 44px; width: 44px; object-fit: contain; border-radius: 10px; }
   .logo-tile.dark { background: #222; color: #fff; }
+  a.logo-tile { transition: transform .2s, box-shadow .2s; }
+  a.logo-tile:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.1); }
 
   .intro-video { position: sticky; top: 120px; }
 
@@ -174,9 +176,9 @@
 
         <h3 class="partners">Past and current<br>partnerships:</h3>
         <div class="logos">
-          <div class="logo-tile"><img src="assets/sprout.png" alt="">Sprout</div>
-          <div class="logo-tile dark"><img src="assets/chatcut.webp" alt="">Chatcut</div>
-          <div class="logo-tile"><img src="assets/tabbot.png" alt="">Tabbot</div>
+          <a class="logo-tile" href="https://www.usesprout.com/" target="_blank" rel="noopener"><img src="assets/sprout.png" alt="">Sprout</a>
+          <a class="logo-tile dark" href="https://chatcut.io/" target="_blank" rel="noopener"><img src="assets/chatcut.webp" alt="">Chatcut</a>
+          <a class="logo-tile" href="https://tab.bot/" target="_blank" rel="noopener"><img src="assets/tabbot.png" alt="">Tabbot</a>
         </div>
       </div>
 
