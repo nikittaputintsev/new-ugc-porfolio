@@ -3,284 +3,213 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nikitta Putintsev</title>
-<meta name="description" content="Nikitta Putintsev — UGC creator.">
+<title>Nikitta Putintsev — UGC creator</title>
+<meta name="description" content="Nikitta Putintsev makes honest, high-retention videos for tech, health and productivity brands.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="assets/apple-touch-icon.png" type="image/png" sizes="180x180">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #fcfcfc;
-    --ink: #1a1a1a;
-    --muted: #6b6b6b;
-    --accent: #ff3b0a;
-    --dark: #1e1e1e;
-    --ph: #e7e7e7;
-    --ph-ink: #9a9a9a;
-    --heading: "Urbanist", "Helvetica Neue", Arial, sans-serif;
-    --body: "Poppins", "Helvetica Neue", Arial, sans-serif;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--ink); font-family: var(--body); font-weight: 300; -webkit-font-smoothing: antialiased; }
-  a { color: inherit; text-decoration: none; }
-  img { display: block; max-width: 100%; }
-
-  /* ---------- Header ---------- */
-  header {
-    position: sticky; top: 0; z-index: 10; background: var(--bg);
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 26px 40px;
-  }
-  .brand { font-family: var(--heading); font-weight: 300; font-size: 34px; letter-spacing: -0.02em; }
-  nav a { font-family: var(--heading); font-size: 26px; font-weight: 400; border-bottom: 2px solid var(--ink); padding-bottom: 2px; }
-
-  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 16px; }
-  .col { max-width: 1110px; margin: 0 auto; }
-
-  /* ---------- Hero ---------- */
-  .hero { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 80px; padding: 80px 0 100px; align-items: start; }
-  .hero-left { max-width: 620px; }
-  h1 { font-family: var(--heading); font-weight: 700; font-size: clamp(48px, 6.4vw, 90px); letter-spacing: -0.03em; line-height: 1; }
-  .role { font-family: var(--heading); font-weight: 600; font-size: clamp(22px, 2.3vw, 32px); margin: 28px 0 14px 6px; letter-spacing: -0.01em; }
-  .pill {
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    width: 100%; max-width: 468px; background: var(--accent); color: #fff;
-    border-radius: 999px; padding: 6px 20px; font-family: var(--heading); font-size: 24px; font-weight: 400;
-    border: 0; cursor: pointer;
-  }
-  .pill:hover { filter: brightness(1.05); }
-  .socials { display: flex; align-items: center; gap: 18px; margin: 30px 0 0; }
-  .socials span { font-family: var(--heading); font-weight: 600; font-size: 32px; letter-spacing: -0.01em; }
-  .socials a {
-    width: 75px; height: 75px; border-radius: 50%; background: var(--ink); color: #fff;
-    display: grid; place-items: center; transition: background .2s;
-  }
-  .socials a:hover { background: #555; }
-  .socials svg { width: 34px; height: 34px; fill: currentColor; }
-  hr { border: 0; border-top: 2px solid var(--ink); max-width: 468px; margin: 42px 0 48px; }
-  h3.partners { font-family: var(--heading); font-weight: 600; font-size: 34px; line-height: 1.3; letter-spacing: -0.01em; margin-bottom: 40px; }
-  .logos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .logo-tile {
-    aspect-ratio: 2.5 / 1; background: #fff; display: flex; align-items: center; justify-content: center; gap: 10px;
-    box-shadow: 0 1px 4px rgba(0,0,0,.06); font-family: var(--heading); font-weight: 800; font-size: 26px; letter-spacing: -0.02em;
-  }
-  .logo-tile img { height: 44px; width: 44px; object-fit: contain; border-radius: 10px; }
-  .logo-tile.dark { background: #222; color: #fff; }
-  a.logo-tile { transition: transform .2s, box-shadow .2s; }
-  a.logo-tile:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.1); }
-
-  .intro-video { position: sticky; top: 120px; }
-
-  /* ---------- Placeholders ---------- */
-  /* To add media: replace a .ph div's contents with
-     <video src="videos/file.mp4" controls playsinline></video>  or  <img src="images/file.jpg" alt="">
-     (an <iframe> from Vimeo/YouTube works too). It will fill the box automatically. */
-  .ph {
-    position: relative; background: var(--ph); overflow: hidden;
-    display: grid; place-items: center; color: var(--ph-ink);
-    font-family: var(--heading); font-weight: 600; font-size: 15px; text-align: center; letter-spacing: .02em;
-  }
-  .ph.v { aspect-ratio: 9 / 16; }
-  .ph.h { aspect-ratio: 16 / 9; }
-  .ph > video, .ph > img, .ph > iframe { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; }
-  .ph .label { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 12px; }
-  .ph .play { width: 64px; height: 42px; background: rgba(0,0,0,.75); border-radius: 6px; display: grid; place-items: center; }
-  .ph .play::after { content: ""; border-left: 16px solid #fff; border-top: 10px solid transparent; border-bottom: 10px solid transparent; margin-left: 4px; }
-  .ph.round .play { width: 60px; height: 60px; border-radius: 50%; }
-
-  /* ---------- Video bank ---------- */
-  .bank { padding: 40px 0 70px; }
-  .bank h2 { font-family: var(--heading); font-weight: 700; font-size: clamp(38px, 4.4vw, 64px); letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 36px; }
-  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-  .grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px 18px; row-gap: 56px; }
-
-  /* ---------- Stats ---------- */
-  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; padding: 60px 0 120px; }
-  .stats .ph { aspect-ratio: 828 / 743; background: #0d1015; color: #6e7480; }
-
-  /* ---------- About ---------- */
-  .about { display: grid; grid-template-columns: 1fr 1.25fr; gap: 20px; align-items: start; padding: 20px 0 110px; }
-  .about h2 { font-family: var(--heading); font-weight: 700; font-size: clamp(42px, 4.6vw, 66px); letter-spacing: -0.03em; margin-bottom: 36px; }
-  .about p { font-size: 22px; line-height: 1.7; margin-bottom: 26px; max-width: 560px; }
-  .about .pill { margin-top: -4px; }
-  .about .ph { aspect-ratio: 1 / 1; }
-
-  /* ---------- Contact ---------- */
-  .contact { background: var(--dark); color: #fff; padding: 140px 0 160px; text-align: center; }
-  .contact h2 { font-family: var(--heading); font-weight: 700; color: var(--accent); font-size: clamp(44px, 6vw, 88px); letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 56px; }
-  .contact .pill { margin: 0 auto; max-width: 820px; font-size: clamp(22px, 3.2vw, 44px); padding: 22px 40px; font-weight: 600; }
-  .contact .hint { margin-top: 22px; color: #9a9a9a; font-size: 16px; min-height: 1.5em; }
-
-  /* ---------- Responsive ---------- */
-  @media (max-width: 1000px) {
-    .hero { grid-template-columns: 1fr; gap: 56px; padding-top: 48px; }
-    .intro-video { position: static; max-width: 360px; width: 100%; }
-    .about { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 760px) {
-    header { padding: 18px 16px; }
-    .brand { font-size: 24px; }
-    nav a { font-size: 19px; }
-    .grid4 { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .grid2 { grid-template-columns: 1fr; row-gap: 18px; }
-    .stats { grid-template-columns: 1fr; }
-    .logos { gap: 10px; }
-    .logo-tile { font-size: 17px; gap: 6px; }
-    .logo-tile img { height: 28px; width: 28px; border-radius: 6px; }
-    .socials span { font-size: 24px; }
-    .socials a { width: 56px; height: 56px; }
-    .socials svg { width: 26px; height: 26px; }
-    h3.partners { font-size: 26px; }
-    .pill { font-size: 17px; }
-    .about p { font-size: 18px; }
-    .contact { padding: 90px 0 110px; }
-    .contact .pill { padding: 18px 20px; font-size: 18px; }
-  }
+:root {
+  --black: #090909;
+  --ink: #f2f0ea;
+  --muted: #a3a09a;
+  --line: rgba(242,240,234,.18);
+  --lime: #c8ff4d;
+  --orange: #ff6a3d;
+  --panel: #151515;
+  --panel-2: #1d1d1b;
+  --mono: "DM Mono", monospace;
+  --display: "Space Grotesk", sans-serif;
+  --ease: cubic-bezier(.2,.8,.2,1);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--black); }
+body { margin: 0; overflow-x: hidden; background: var(--black); color: var(--ink); font-family: var(--display); -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+::selection { background: var(--lime); color: var(--black); }
+.cursor { position: fixed; z-index: 99; width: 16px; height: 16px; border: 1px solid var(--lime); border-radius: 50%; pointer-events: none; transform: translate(-50%,-50%); transition: width .25s var(--ease), height .25s var(--ease), background .25s, border-color .25s; mix-blend-mode: difference; }
+.cursor.is-hover { width: 62px; height: 62px; background: var(--lime); border-color: var(--lime); }
+.cursor-label { position: fixed; z-index: 100; pointer-events: none; display: none; color: var(--black); font: 10px var(--mono); transform: translate(-50%,-50%); }
+.cursor.is-hover + .cursor-label { display: block; }
+.shell { width: min(1440px, 100%); margin: 0 auto; padding: 0 4vw; }
+.header { position: fixed; inset: 0 0 auto; z-index: 20; display: flex; align-items: center; justify-content: space-between; padding: 24px 4vw; background: linear-gradient(var(--black), transparent); mix-blend-mode: normal; }
+.brand { font: 500 clamp(16px, 2vw, 24px) var(--display); letter-spacing: -.06em; }
+.brand span { color: var(--lime); }
+.nav { display: flex; gap: 24px; font: 11px var(--mono); text-transform: uppercase; letter-spacing: .12em; }
+.nav a { position: relative; color: var(--muted); transition: color .2s; }
+.nav a:hover { color: var(--lime); }
+.nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -7px; height: 1px; background: var(--lime); transform: scaleX(0); transform-origin: right; transition: transform .3s var(--ease); }
+.nav a:hover::after { transform: scaleX(1); transform-origin: left; }
+.eyebrow { display: flex; align-items: center; gap: 10px; color: var(--lime); font: 11px var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+.eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 16px var(--orange); }
+.hero { min-height: 100svh; display: grid; align-items: end; padding: 150px 0 7vw; position: relative; isolation: isolate; }
+.hero::before { content: ""; position: absolute; z-index: -1; inset: 14% 4% 8%; background: radial-gradient(circle at 70% 40%, rgba(200,255,77,.15), transparent 33%), radial-gradient(circle at 30% 75%, rgba(255,106,61,.12), transparent 28%); filter: blur(20px); }
+.hero-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 6vw; align-items: end; }
+.hero h1 { max-width: 950px; margin: 26px 0 26px; font-size: clamp(60px, 12vw, 180px); line-height: .83; letter-spacing: -.095em; font-weight: 600; }
+.hero h1 em { color: var(--lime); font-style: normal; }
+.hero-copy { max-width: 450px; color: var(--muted); font-size: clamp(17px, 1.8vw, 24px); line-height: 1.25; }
+.hero-copy strong { color: var(--ink); font-weight: 500; }
+.hero-side { display: grid; gap: 24px; padding-bottom: 6px; }
+.hero-stamp { width: min(100%, 300px); aspect-ratio: 1; border: 1px solid var(--line); border-radius: 50%; display: grid; place-items: center; position: relative; transform: rotate(9deg); animation: float 5s ease-in-out infinite; }
+.hero-stamp::before { content: "NO BORING ADS"; position: absolute; inset: 15px; border: 1px dashed var(--line); border-radius: 50%; display: grid; place-items: center; font: 10px var(--mono); letter-spacing: .18em; color: var(--lime); }
+.hero-stamp b { font-size: 60px; letter-spacing: -.12em; transform: rotate(-9deg); }
+@keyframes float { 50% { transform: rotate(3deg) translateY(-12px); } }
+.scroll-note { display: flex; justify-content: space-between; align-items: center; padding-top: 26px; border-top: 1px solid var(--line); font: 10px var(--mono); color: var(--muted); letter-spacing: .12em; text-transform: uppercase; }
+.arrow { color: var(--lime); font-size: 20px; }
+.marquee { overflow: hidden; border-block: 1px solid var(--line); white-space: nowrap; background: var(--lime); color: var(--black); }
+.marquee-track { display: inline-flex; gap: 30px; padding: 14px 0; animation: ticker 24s linear infinite; font: 500 12px var(--mono); letter-spacing: .13em; text-transform: uppercase; }
+@keyframes ticker { to { transform: translateX(-50%); } }
+.section { padding: 12vw 0; position: relative; }
+.section-head { display: flex; justify-content: space-between; gap: 30px; align-items: end; margin-bottom: 48px; }
+.section-index { color: var(--lime); font: 12px var(--mono); }
+.section-title { max-width: 780px; margin: 0; font-size: clamp(48px, 8vw, 118px); line-height: .88; letter-spacing: -.09em; font-weight: 500; }
+.section-intro { max-width: 380px; margin: 0; color: var(--muted); font-size: 15px; line-height: 1.45; }
+.logo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.logo-card { min-height: 170px; padding: 22px; background: var(--panel); border: 1px solid var(--line); display: flex; flex-direction: column; justify-content: space-between; transition: background .35s var(--ease), transform .35s var(--ease); }
+.logo-card:hover { background: var(--lime); color: var(--black); transform: translateY(-8px) rotate(-1deg); }
+.logo-card img { width: 42px; height: 42px; object-fit: contain; border-radius: 10px; background: #fff; padding: 5px; }
+.logo-card h3 { margin: 30px 0 0; font-size: 25px; letter-spacing: -.05em; }
+.logo-card p { margin: 4px 0 0; color: var(--muted); font: 11px var(--mono); }
+.logo-card:hover p { color: var(--black); }
+.work-section { background: #101010; }
+.work-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
+.project { grid-column: span 6; perspective: 900px; }
+.project:nth-child(3) { grid-column: 2 / span 5; }
+.project:nth-child(4) { grid-column: 7 / span 5; }
+.video { position: relative; aspect-ratio: 9/16; overflow: hidden; background: #242424; border: 1px solid var(--line); transform-style: preserve-3d; transition: transform .5s var(--ease), border-color .3s; }
+.project:hover .video { border-color: var(--lime); }
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.project-meta { display: flex; justify-content: space-between; gap: 12px; padding: 14px 0 0; font: 11px var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+.project-meta span:last-child { color: var(--lime); }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 70px; }
+.stat { overflow: hidden; border: 1px solid var(--line); background: var(--panel); }
+.stat img { width: 100%; aspect-ratio: 1.12; object-fit: cover; filter: grayscale(1); opacity: .75; transition: filter .4s, opacity .4s, transform .5s var(--ease); }
+.stat:hover img { filter: grayscale(0); opacity: 1; transform: scale(1.04); }
+.stat figcaption { padding: 12px 14px; font: 10px var(--mono); color: var(--muted); }
+.about-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: 8vw; align-items: start; }
+.about-image { position: sticky; top: 110px; overflow: hidden; border: 1px solid var(--line); transform: rotate(-3deg); }
+.about-image img { width: 100%; aspect-ratio: 1/1.15; object-fit: cover; filter: saturate(.7); }
+.about-copy { max-width: 670px; }
+.about-lead { margin: 0 0 35px; color: var(--lime); font-size: clamp(28px, 4vw, 55px); line-height: .95; letter-spacing: -.08em; }
+.about-copy p:not(.about-lead) { color: var(--muted); font-size: clamp(18px, 2vw, 25px); line-height: 1.25; }
+.about-copy p strong { color: var(--ink); font-weight: 500; }
+.capabilities { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 38px; }
+.capabilities span { padding: 11px 14px; border: 1px solid var(--line); border-radius: 100px; color: var(--muted); font: 10px var(--mono); }
+.contact { min-height: 85svh; display: grid; place-items: center; text-align: center; border-top: 1px solid var(--line); background: radial-gradient(circle at 50% 50%, #24271b, var(--black) 60%); }
+.contact-inner { width: min(100%, 960px); }
+.contact h2 { margin: 18px 0 45px; font-size: clamp(58px, 12vw, 175px); line-height: .8; letter-spacing: -.11em; font-weight: 500; }
+.email { display: inline-flex; align-items: center; gap: 16px; padding: 18px 23px; border: 1px solid var(--lime); color: var(--lime); background: transparent; cursor: pointer; font: 12px var(--mono); transition: background .25s, color .25s, transform .25s var(--ease); }
+.email:hover { background: var(--lime); color: var(--black); transform: scale(1.04); }
+.contact .hint { margin: 15px 0 0; color: var(--muted); font: 10px var(--mono); }
+.footer { display: flex; justify-content: space-between; padding: 24px 4vw; border-top: 1px solid var(--line); color: var(--muted); font: 10px var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+.footer-links { display: flex; gap: 20px; }
+.footer a:hover { color: var(--lime); }
+.reveal { opacity: 0; transform: translateY(35px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.reveal.is-visible { opacity: 1; transform: none; }
+@media (max-width: 760px) {
+  .header { padding: 18px 5vw; }
+  .nav { gap: 12px; font-size: 9px; }
+  .nav a:nth-child(2), .nav a:nth-child(3) { display: none; }
+  .shell { padding: 0 5vw; }
+  .hero { padding-top: 130px; }
+  .hero-grid, .about-grid { grid-template-columns: 1fr; gap: 42px; }
+  .hero-side { order: -1; grid-template-columns: auto 1fr; align-items: center; }
+  .hero-stamp { width: 145px; }
+  .hero-stamp::before { font-size: 7px; }
+  .hero-stamp b { font-size: 40px; }
+  .hero h1 { font-size: clamp(58px, 18vw, 110px); }
+  .section { padding: 24vw 0; }
+  .section-head { display: block; }
+  .section-intro { margin-top: 20px; }
+  .logo-grid, .stats { grid-template-columns: 1fr; }
+  .logo-card { min-height: 130px; }
+  .work-grid { display: grid; grid-template-columns: 1fr 1fr; }
+  .project, .project:nth-child(3), .project:nth-child(4) { grid-column: span 1; }
+  .project:nth-child(3) .video, .project:nth-child(4) .video { aspect-ratio: 9/16; }
+  .project-meta { display: block; line-height: 1.6; }
+  .project-meta span { display: block; }
+  .about-image { position: relative; top: auto; max-width: 380px; }
+  .footer { display: block; line-height: 2.2; }
+  .footer-links { gap: 12px; }
+  .cursor, .cursor-label { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+}
 </style>
 </head>
 <body>
-
-<header>
-  <a class="brand" href="#top">NikittaPutintsev</a>
-  <nav><a href="#top">Home</a></nav>
+<div class="cursor" aria-hidden="true"></div><div class="cursor-label" aria-hidden="true">OPEN</div>
+<header class="header">
+  <a class="brand" href="#top">Nikitta<span>●</span>Putintsev</a>
+  <nav class="nav" aria-label="Main navigation"><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
 </header>
-
 <main id="top">
-  <div class="wrap"><div class="col">
-
-    <!-- ===== Hero ===== -->
+  <div class="shell">
     <section class="hero">
-      <div class="hero-left">
-        <h1>Nikitta Putintsev</h1>
-        <p class="role">UGC creator</p>
-        <a class="pill" href="mailto:nikittaputintsev@gmail.com">
-          <svg width="24" height="18" viewBox="0 0 24 18" fill="#fff" aria-hidden="true"><path d="M0 0h24v18H0z" opacity=".85"/><path d="M0 0l12 9 12-9" fill="none" stroke="#ff3b0a" stroke-width="1.5"/></svg>
-          nikittaputintsev@gmail.com
-        </a>
-
-        <div class="socials">
-          <span>My socials:</span>
-          <a href="https://www.instagram.com/nikitta.putintsev/" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1.1.4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1.1.4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1.1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1.1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2.1.4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.4-.3 1-.4 2.1C2.7 9.9 2.7 10.3 2.7 12s0 3.5.1 4.7c.1 1.1.2 1.7.4 2.1.2.5.4.9.8 1.3.4.4.8.6 1.3.8.4.2 1 .3 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2.1-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.4.3-1 .4-2.1.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.7-.4-2.1-.2-.5-.4-.9-.8-1.3-.4-.4-.8-.6-1.3-.8-.4-.2-1-.3-2.1-.4C15.5 4 15.1 4 12 4zm0 3.1a4.9 4.9 0 110 9.8 4.9 4.9 0 010-9.8zm0 8.1a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zm6.2-8.3a1.1 1.1 0 11-2.3 0 1.1 1.1 0 012.3 0z"/></svg>
-          </a>
-          <a href="https://www.tiktok.com/@nikitta.putintsev" target="_blank" rel="noopener" aria-label="TikTok">
-            <svg viewBox="0 0 24 24"><path d="M16.6 2h-3.3v13.4a2.9 2.9 0 11-2.9-2.9c.3 0 .6 0 .9.1V9.2a6.2 6.2 0 105.3 6.2V8.6a7.8 7.8 0 004.6 1.5V6.8a4.6 4.6 0 01-4.6-4.6z"/></svg>
-          </a>
-          <a href="https://www.youtube.com/channel/UCrpYtnSiuvrD59vxZqFxxRQ" target="_blank" rel="noopener" aria-label="YouTube">
-            <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 00.5 6.2 31 31 0 000 12a31 31 0 00.5 5.8 3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1A31 31 0 0024 12a31 31 0 00-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
-          </a>
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">UGC creator / Washington</div>
+          <h1>Make them<br><em>stop.</em><br>Scrolling.</h1>
+          <p class="hero-copy"><strong>Honest, sharp videos</strong> for tech, health and productivity products. If I wouldn’t use it, I won’t film it.</p>
         </div>
-
-        <hr>
-
-        <h3 class="partners">Past and current<br>partnerships:</h3>
-        <div class="logos">
-          <a class="logo-tile" href="https://www.usesprout.com/" target="_blank" rel="noopener"><img src="assets/sprout.png" alt="">Sprout</a>
-          <a class="logo-tile dark" href="https://chatcut.io/" target="_blank" rel="noopener"><img src="assets/chatcut.webp" alt="">Chatcut</a>
-          <a class="logo-tile" href="https://tab.bot/" target="_blank" rel="noopener"><img src="assets/tabbot.png" alt="">Tabbot</a>
+        <div class="hero-side">
+          <div class="hero-stamp"><b>NP</b></div>
+          <div class="scroll-note"><span>Scroll to enter the studio</span><span class="arrow">↓</span></div>
         </div>
       </div>
-
-      <div class="intro-video">
-        <div class="ph v"><div class="label"><div class="play"></div>Intro video</div></div>
+    </section>
+  </div>
+  <div class="marquee"><div class="marquee-track">REAL PRODUCTS <span>✦</span> REAL PERSONALITY <span>✦</span> NO BORING ADS <span>✦</span> REAL PRODUCTS <span>✦</span> REAL PERSONALITY <span>✦</span> NO BORING ADS <span>✦</span></div></div>
+  <div class="shell">
+    <section class="section reveal" id="partnerships">
+      <div class="section-head"><div><div class="section-index">01 / WHO I WORK WITH</div><h2 class="section-title">Good products<br>deserve better videos.</h2></div><p class="section-intro">Past and current partnerships with brands I actually believe in. Click around. They’re real.</p></div>
+      <div class="logo-grid">
+        <a class="logo-card" href="https://www.usesprout.com/" target="_blank" rel="noopener"><img src="assets/sprout.png" alt="Sprout"><div><h3>Sprout</h3><p>AI job-search tool ↗</p></div></a>
+        <a class="logo-card" href="https://chatcut.io/" target="_blank" rel="noopener"><img src="assets/chatcut.webp" alt="Chatcut"><div><h3>Chatcut</h3><p>AI video editor ↗</p></div></a>
+        <a class="logo-card" href="https://tab.bot/" target="_blank" rel="noopener"><img src="assets/tabbot.png" alt="Tabbot"><div><h3>Tabbot</h3><p>AI agent in your messages ↗</p></div></a>
       </div>
     </section>
-
-    <!-- ===== Video bank ===== -->
-    <section class="bank">
-      <h2>Sprout</h2>
-      <div class="grid4">
-        <div class="ph v"><iframe src="https://player.vimeo.com/video/1231377153?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Sprout tier list" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
-        <div class="ph v"><iframe src="https://player.vimeo.com/video/1231379514?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Sprout good better best" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
-        <div class="ph v"><iframe src="https://player.vimeo.com/video/1231381157?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Sprout friendly reminder" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
-        <div class="ph v"><iframe src="https://player.vimeo.com/video/1231382555?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Sprout green screen" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    <section class="section work-section reveal" id="work">
+      <div class="section-head"><div><div class="section-index">02 / SELECTED WORK</div><h2 class="section-title">The proof<br>is in the play.</h2></div><p class="section-intro">Self-made pieces, campaign work, and a few things I made because I wanted to see if the idea worked.</p></div>
+      <div class="work-grid">
+        <article class="project" data-cursor="WATCH"><div class="video"><iframe src="https://player.vimeo.com/video/1231377153?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Sprout tier list" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div><div class="project-meta"><span>Sprout / 01</span><span>Tier list</span></div></article>
+        <article class="project" data-cursor="WATCH"><div class="video"><iframe src="https://player.vimeo.com/video/1231379514?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Sprout good better best" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div><div class="project-meta"><span>Sprout / 02</span><span>Good / better / best</span></div></article>
+        <article class="project" data-cursor="WATCH"><div class="video"><iframe src="https://player.vimeo.com/video/1231381157?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Sprout friendly reminder" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div><div class="project-meta"><span>Sprout / 03</span><span>Friendly reminder</span></div></article>
+        <article class="project" data-cursor="WATCH"><div class="video"><iframe src="https://player.vimeo.com/video/1231382555?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Sprout green screen" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div><div class="project-meta"><span>Sprout / 04</span><span>Green screen</span></div></article>
+        <article class="project" data-cursor="WATCH"><div class="video"><iframe src="https://player.vimeo.com/video/1231386600?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Chatcut video" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div><div class="project-meta"><span>Chatcut / 01</span><span>Product demo</span></div></article>
+        <article class="project" data-cursor="WATCH"><div class="video"><iframe src="https://player.vimeo.com/video/1231413120?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Chatcut video 2" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div><div class="project-meta"><span>Chatcut / 02</span><span>Explainer</span></div></article>
+        <article class="project" data-cursor="WATCH"><div class="video"><iframe src="https://player.vimeo.com/video/1231383542?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Tabbot 3 websites" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div><div class="project-meta"><span>Tabbot / 01</span><span>Three websites</span></div></article>
+        <article class="project" data-cursor="WATCH"><div class="video"><iframe src="https://player.vimeo.com/video/1231415868?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Clarity comes from chaos" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div><div class="project-meta"><span>Personal / 01</span><span>Clarity from chaos</span></div></article>
       </div>
+      <div class="stats"><figure class="stat"><img src="assets/stats-1.jpg" alt="Video stats: 753 views" loading="lazy"><figcaption>01 / 753 views</figcaption></figure><figure class="stat"><img src="assets/stats-2.jpg" alt="Video stats: 4,160 views" loading="lazy"><figcaption>02 / 4,160 views</figcaption></figure><figure class="stat"><img src="assets/stats-3.jpg" alt="Video stats: 2,851 views" loading="lazy"><figcaption>03 / 2,851 views</figcaption></figure></div>
     </section>
-
-    <section class="bank">
-      <h2>Chatcut</h2>
-      <div class="grid4">
-        <div class="ph v"><iframe src="https://player.vimeo.com/video/1231386600?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Chatcut video" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
-        <div class="ph v"><iframe src="https://player.vimeo.com/video/1231413120?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Chatcut video 2" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
-      </div>
+    <section class="section about-grid reveal" id="about">
+      <div class="about-image"><img src="assets/about.jpg" alt="Nikitta Putintsev on the beach at sunset" style="object-position:center 30%"></div>
+      <div class="about-copy"><div class="section-index">03 / THE HUMAN BIT</div><p class="about-lead">I make videos because apparently talking to strangers on the internet is a career now.</p><p>I’ve loved making videos since I was a kid. The products changed; the part I like didn’t. I write my own scripts, send multiple hooks per brief, and I care about making the thing feel like a <strong>person found it—not an ad department.</strong></p><p>I don’t work with just anyone. If you’re selling AI slop, kindly find someone else. If you have a real product and want people to actually understand it, we’ll probably get along.</p><div class="capabilities"><span>Multiple hooks</span><span>Scripts by me</span><span>Tech / health / productivity</span><span>No boring intros</span></div></div>
     </section>
-
-    <section class="bank">
-      <h2>Tabbot</h2>
-      <div class="grid4">
-        <div class="ph v"><iframe src="https://player.vimeo.com/video/1231383542?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Tabbot 3 websites" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
-      </div>
-    </section>
-
-    <section class="bank">
-      <h2>Personal Content</h2>
-      <div class="grid2">
-        <div class="ph h round"><iframe src="https://player.vimeo.com/video/1231415868?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Clarity comes from chaos" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
-        <div class="ph h round"><iframe src="https://player.vimeo.com/video/1231424390?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Outliers" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
-      </div>
-    </section>
-
-    <!-- ===== Stats screenshots ===== -->
-    <section class="stats">
-      <div class="ph"><img src="assets/stats-1.jpg" alt="Video stats: 753 views"></div>
-      <div class="ph"><img src="assets/stats-2.jpg" alt="Video stats: 4,160 views"></div>
-      <div class="ph"><img src="assets/stats-3.jpg" alt="Video stats: 2,851 views"></div>
-    </section>
-
-    <!-- ===== About ===== -->
-    <section class="about">
-      <div>
-        <h2>About Me</h2>
-        <p>yoooo it's Nikitta :)</p>
-        <p>So is this where I'm supposed to prove that I'm better than everyone else lol?</p>
-        <p>I've always loved making videos as a kid, the whole romance and wonder of creating always inspired me. So when I learned about UGC, it was a no brainer. I genuinely love what I do and that it can actually help you grow your brand.</p>
-        <p>HOWEVER I do not work with just anyone. I only work with a brand I genuinely believe in. So if you're some freakin ai slop scam, kindly find someone else. But if you're a tech company that has a real product, sweet, then feel free to reach out. I'd love to see whatchu got</p>
-        <a class="pill" href="#contact">Reach out</a>
-      </div>
-      <div class="ph"><img src="assets/about.jpg" alt="Nikitta Putintsev on the beach at sunset" style="object-position: center 30%"></div>
-    </section>
-
-  </div></div>
-
-  <!-- ===== Contact ===== -->
-  <section class="contact" id="contact">
-    <div class="wrap">
-      <h2>Let's make something work</h2>
-      <button class="pill" id="copy-email" type="button">nikittaputintsev@gmail.com</button>
-      <p class="hint" id="copy-hint">Click to copy my email</p>
-    </div>
-  </section>
+  </div>
+  <section class="contact reveal" id="contact"><div class="contact-inner"><div class="eyebrow" style="justify-content:center">04 / MAKE SOMETHING</div><h2>Got a brief?</h2><button class="email" id="copy-email" type="button">nikittaputintsev@gmail.com <span>↗</span></button><p class="hint" id="copy-hint">Click to copy my email</p></div></section>
 </main>
-
+<footer class="footer"><span>© 2026 Nikitta Putintsev</span><div class="footer-links"><a href="https://www.instagram.com/nikitta.putintsev/" target="_blank" rel="noopener">Instagram ↗</a><a href="https://www.tiktok.com/@nikitta.putintsev" target="_blank" rel="noopener">TikTok ↗</a><a href="mailto:nikittaputintsev@gmail.com">Email ↗</a></div></footer>
 <script>
-  (function () {
-    var btn = document.getElementById('copy-email');
-    var hint = document.getElementById('copy-hint');
-    var email = 'nikittaputintsev@gmail.com';
-    var timer;
-    function done() {
-      btn.textContent = 'Copied!';
-      hint.textContent = email + ' is on your clipboard';
-      clearTimeout(timer);
-      timer = setTimeout(function () { btn.textContent = email; hint.textContent = 'Click to copy my email'; }, 2000);
-    }
-    function fallback() {
-      var t = document.createElement('textarea');
-      t.value = email; t.style.position = 'fixed'; t.style.opacity = '0';
-      document.body.appendChild(t); t.select();
-      try { document.execCommand('copy'); done(); } catch (e) { window.location.href = 'mailto:' + email; }
-      document.body.removeChild(t);
-    }
-    btn.addEventListener('click', function () {
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(email).then(done, fallback);
-      } else { fallback(); }
-    });
-  })();
+(function(){
+  var cursor=document.querySelector('.cursor'), label=document.querySelector('.cursor-label');
+  if(cursor && matchMedia('(pointer:fine)').matches){
+    addEventListener('mousemove',function(e){cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';label.style.left=e.clientX+'px';label.style.top=e.clientY+'px';});
+    document.querySelectorAll('[data-cursor]').forEach(function(el){el.addEventListener('mouseenter',function(){cursor.classList.add('is-hover');label.textContent=el.dataset.cursor;});el.addEventListener('mouseleave',function(){cursor.classList.remove('is-hover');});});
+  }
+  var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target);}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){observer.observe(el);});
+  document.querySelectorAll('.project').forEach(function(card){card.addEventListener('mousemove',function(e){var r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.querySelector('.video').style.transform='rotateY('+x*5+'deg) rotateX('+y*-5+'deg)';});card.addEventListener('mouseleave',function(){card.querySelector('.video').style.transform='';});});
+  var btn=document.getElementById('copy-email'),hint=document.getElementById('copy-hint'),email='nikittaputintsev@gmail.com',timer;
+  function done(){btn.firstChild.textContent='Copied! ';hint.textContent=email+' is on your clipboard';clearTimeout(timer);timer=setTimeout(function(){btn.firstChild.textContent=email+' ';hint.textContent='Click to copy my email';},2200);}
+  function fallback(){var t=document.createElement('textarea');t.value=email;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy');done();}catch(e){location.href='mailto:'+email;}document.body.removeChild(t);}
+  btn.addEventListener('click',function(){navigator.clipboard&&isSecureContext?navigator.clipboard.writeText(email).then(done,fallback):fallback();});
+})();
 </script>
 </body>
 </html>
