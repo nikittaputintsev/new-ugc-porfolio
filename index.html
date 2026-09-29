@@ -98,11 +98,12 @@
   .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
   .grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px 18px; row-gap: 56px; }
   .film-strip { overflow: hidden; }
+  .film-strip--four { width: calc((100% - 54px) / 4); }
+  .film-strip--two { width: calc((100% - 18px) / 2); }
   .film-strip .grid4, .film-strip .grid2 { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; cursor: grab; }
   .film-strip .grid4::-webkit-scrollbar, .film-strip .grid2::-webkit-scrollbar { display: none; }
   .film-strip .grid4:active, .film-strip .grid2:active { cursor: grabbing; }
-  .film-strip .grid4 .ph { flex: 0 0 calc((100% - 54px) / 4); scroll-snap-align: start; }
-  .film-strip .grid2 .ph { flex: 0 0 calc((100% - 18px) / 2); scroll-snap-align: start; }
+  .film-strip .grid4 .ph, .film-strip .grid2 .ph { flex: 0 0 100%; scroll-snap-align: start; }
 
   /* ---------- Stats ---------- */
   .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; padding: 60px 0 120px; }
@@ -134,8 +135,9 @@
     .grid4 { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .grid2 { grid-template-columns: 1fr; row-gap: 18px; }
     .film-strip .grid4, .film-strip .grid2 { gap: 12px; }
-    .film-strip .grid4 .ph { flex-basis: calc((100% - 12px) / 2); }
-    .film-strip .grid2 .ph { flex-basis: 100%; }
+    .film-strip--four { width: calc((100% - 12px) / 2); }
+    .film-strip--two { width: 100%; }
+    .film-strip .grid4 .ph, .film-strip .grid2 .ph { flex-basis: 100%; }
     .stats { grid-template-columns: 1fr; }
     .logos { gap: 10px; }
     .logo-tile { font-size: 17px; gap: 6px; }
@@ -202,7 +204,7 @@
     <!-- ===== Video bank ===== -->
     <section class="bank">
       <h2>Sprout</h2>
-      <div class="film-strip"><div class="grid4">
+      <div class="film-strip film-strip--four"><div class="grid4">
         <div class="ph v"><iframe src="https://player.vimeo.com/video/1231377153?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Sprout tier list" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
         <div class="ph v"><iframe src="https://player.vimeo.com/video/1231379514?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Sprout good better best" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
         <div class="ph v"><iframe src="https://player.vimeo.com/video/1231381157?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Sprout friendly reminder" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
@@ -212,7 +214,7 @@
 
     <section class="bank">
       <h2>Chatcut</h2>
-      <div class="film-strip"><div class="grid4">
+      <div class="film-strip film-strip--four"><div class="grid4">
         <div class="ph v"><iframe src="https://player.vimeo.com/video/1231386600?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Chatcut video" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
         <div class="ph v"><iframe src="https://player.vimeo.com/video/1231413120?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Chatcut video 2" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
       </div></div>
@@ -220,14 +222,14 @@
 
     <section class="bank">
       <h2>Tabbot</h2>
-      <div class="film-strip"><div class="grid4">
+      <div class="film-strip film-strip--four"><div class="grid4">
         <div class="ph v"><iframe src="https://player.vimeo.com/video/1231383542?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Tabbot 3 websites" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
       </div></div>
     </section>
 
     <section class="bank">
       <h2>Personal Content</h2>
-      <div class="film-strip"><div class="grid2">
+      <div class="film-strip film-strip--two"><div class="grid2">
         <div class="ph h round"><iframe src="https://player.vimeo.com/video/1231415868?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Clarity comes from chaos" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
         <div class="ph h round"><iframe src="https://player.vimeo.com/video/1231424390?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Outliers" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
       </div></div>
