@@ -465,7 +465,11 @@
     roots.forEach(function (root) {
       var cards = Array.from(root.querySelectorAll('[data-bounce-card]'));
       cards.forEach(function (card) {
-        card.addEventListener('animationend', function () { card.style.animation = 'none'; card.style.opacity = '1'; });
+        card.addEventListener('animationend', function () {
+          card.style.animation = 'none';
+          card.style.opacity = '1';
+          card.style.transform = 'translateX(calc(-50% + var(--base-x) + var(--push-x, 0%))) rotate(calc(var(--base-rotate) + var(--hover-rotation, 0deg))) scale(1)';
+        });
       });
       function reset() {
         cards.forEach(function (card, index) {
