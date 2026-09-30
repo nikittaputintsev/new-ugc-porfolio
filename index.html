@@ -80,6 +80,33 @@
   a.logo-tile:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.1); }
 
   .intro-video { position: sticky; top: 120px; }
+  .studio-scene { position: relative; height: 420px; perspective: 900px; }
+  .studio-desk { position: absolute; inset: 20px 0 24px; transform: rotateX(54deg) rotateZ(-5deg) rotateY(var(--orbit, 0deg)); transform-style: preserve-3d; transition: transform .2s ease-out; }
+  .studio-surface { position: absolute; left: 3%; right: 3%; bottom: 18px; height: 235px; border: 2px solid var(--ink); background: var(--ph); box-shadow: 12px 12px 0 var(--ink); transform: translateZ(-20px); }
+  .studio-object { position: absolute; z-index: 2; display: grid; justify-items: center; gap: 7px; color: var(--ink); font-family: var(--heading); font-size: 12px; font-weight: 600; text-align: center; transform: translateZ(24px); transition: color .2s, transform .2s; }
+  .studio-object:hover { color: var(--accent); transform: translateZ(36px) translateY(-5px); }
+  .studio-object__label { display: block; white-space: nowrap; }
+  .studio-camera { left: 10%; top: 20%; }
+  .studio-phone { left: 58%; top: 13%; }
+  .studio-laptop { left: 34%; top: 43%; }
+  .studio-ring { right: 7%; top: 7%; }
+  .studio-mic { left: 8%; bottom: 12%; }
+  .studio-note { right: 11%; bottom: 14%; }
+  .studio-package { left: 62%; bottom: 10%; }
+  .studio-timeline { left: 20%; right: 20%; bottom: 1%; }
+  .shape-camera { position: relative; width: 92px; height: 54px; border: 3px solid currentColor; border-radius: 7px; background: #fff; }
+  .shape-camera::before { content: ""; position: absolute; width: 30px; height: 30px; left: 28px; top: 9px; border: 3px solid currentColor; border-radius: 50%; }
+  .shape-camera::after { content: ""; position: absolute; width: 20px; height: 7px; left: 10px; top: -9px; border: 3px solid currentColor; border-bottom: 0; }
+  .shape-phone { width: 38px; height: 72px; border: 3px solid currentColor; border-radius: 7px; background: #fff; }
+  .shape-laptop { position: relative; width: 105px; height: 62px; border: 3px solid currentColor; border-radius: 5px 5px 0 0; background: #fff; }
+  .shape-laptop::after { content: ""; position: absolute; left: -14px; right: -14px; bottom: -12px; height: 9px; border: 3px solid currentColor; border-radius: 0 0 5px 5px; background: var(--ph); }
+  .shape-ring { width: 66px; height: 66px; border: 7px solid currentColor; border-radius: 50%; background: #fff; }
+  .shape-mic { width: 28px; height: 52px; border: 3px solid currentColor; border-radius: 20px; background: #fff; }
+  .shape-mic::after { content: ""; position: absolute; width: 42px; height: 16px; left: -10px; bottom: -13px; border-bottom: 3px solid currentColor; border-radius: 50%; }
+  .shape-note { width: 58px; height: 58px; border: 2px solid currentColor; background: var(--accent); transform: rotate(7deg); }
+  .shape-package { width: 72px; height: 62px; border: 3px solid currentColor; background: #fff; transform: skewY(5deg); }
+  .shape-timeline { width: 100%; height: 22px; border-block: 3px solid currentColor; background: repeating-linear-gradient(90deg, var(--accent) 0 4px, transparent 4px 52px); }
+  .studio-caption { position: absolute; left: 0; bottom: 0; color: var(--ph-ink); font: 11px var(--body); letter-spacing: .02em; }
 
   /* ---------- Placeholders ---------- */
   /* To add media: replace a .ph div's contents with
@@ -125,6 +152,7 @@
   @media (max-width: 1000px) {
     .hero { min-height: auto; grid-template-columns: 1fr; gap: 56px; padding-top: 48px; }
     .intro-video { position: static; max-width: 360px; width: 100%; }
+    .studio-scene { height: 360px; }
     .about { grid-template-columns: 1fr; }
   }
   @media (max-width: 760px) {
@@ -145,6 +173,11 @@
     .about p { font-size: 18px; }
     .contact { padding: 90px 0 110px; }
     .contact .pill { padding: 18px 20px; font-size: 18px; }
+    .studio-scene { height: 320px; }
+    .studio-object { font-size: 10px; }
+    .shape-camera { transform: scale(.82); transform-origin: bottom center; }
+    .shape-laptop { transform: scale(.82); transform-origin: bottom center; }
+    .shape-ring { transform: scale(.82); }
   }
   @media (prefers-reduced-motion: reduce) {
     .title-sequence__identity { transition: none; }
@@ -180,7 +213,7 @@
           nikittaputintsev@gmail.com
         </a>
 
-        <div class="socials">
+        <div class="socials" id="socials">
           <span>My socials:</span>
           <a href="https://www.instagram.com/nikitta.putintsev/" target="_blank" rel="noopener" aria-label="Instagram">
             <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1.1.4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1.1.4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1.1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1.1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2.1.4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.4-.3 1-.4 2.1C2.7 9.9 2.7 10.3 2.7 12s0 3.5.1 4.7c.1 1.1.2 1.7.4 2.1.2.5.4.9.8 1.3.4.4.8.6 1.3.8.4.2 1 .3 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2.1-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.4.3-1 .4-2.1.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.7-.4-2.1-.2-.5-.4-.9-.8-1.3-.4-.4-.8-.6-1.3-.8-.4-.2-1-.3-2.1-.4C15.5 4 15.1 4 12 4zm0 3.1a4.9 4.9 0 110 9.8 4.9 4.9 0 010-9.8zm0 8.1a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zm6.2-8.3a1.1 1.1 0 11-2.3 0 1.1 1.1 0 012.3 0z"/></svg>
@@ -204,7 +237,20 @@
       </div>
 
       <div class="intro-video">
-        <div class="ph v"><div class="label"><div class="play"></div>Intro video</div></div>
+        <nav class="studio-scene" aria-label="Creator desk navigation" data-studio-scene>
+          <div class="studio-desk">
+            <div class="studio-surface" aria-hidden="true"></div>
+            <a class="studio-object studio-camera" href="#work" aria-label="Go to work"><span class="shape-camera" aria-hidden="true"></span><span class="studio-object__label">Work</span></a>
+            <a class="studio-object studio-phone" href="#socials" aria-label="Go to socials"><span class="shape-phone" aria-hidden="true"></span><span class="studio-object__label">Socials</span></a>
+            <a class="studio-object studio-laptop" href="#about" aria-label="Go to about"><span class="shape-laptop" aria-hidden="true"></span><span class="studio-object__label">About</span></a>
+            <a class="studio-object studio-ring" href="#work" aria-label="Go to case studies"><span class="shape-ring" aria-hidden="true"></span><span class="studio-object__label">Case studies</span></a>
+            <a class="studio-object studio-mic" href="#contact" aria-label="Go to contact"><span class="shape-mic" aria-hidden="true"></span><span class="studio-object__label">Contact</span></a>
+            <a class="studio-object studio-note" href="#contact" aria-label="Go to contact note"><span class="shape-note" aria-hidden="true"></span><span class="studio-object__label">Brief</span></a>
+            <a class="studio-object studio-package" href="#partnerships" aria-label="Go to partnerships"><span class="shape-package" aria-hidden="true"></span><span class="studio-object__label">Partners</span></a>
+            <a class="studio-object studio-timeline" href="#work" aria-label="Go to video work"><span class="shape-timeline" aria-hidden="true"></span><span class="studio-object__label">Video timeline</span></a>
+          </div>
+          <span class="studio-caption">Click an object to enter</span>
+        </nav>
       </div>
     </section>
 
@@ -275,6 +321,18 @@
 </main>
 
 <script>
+  (function () {
+    var scene = document.querySelector('[data-studio-scene]');
+    if (!scene || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var desk = scene.querySelector('.studio-desk');
+    function orbit() {
+      var amount = Math.sin(window.scrollY / 520) * 4;
+      desk.style.setProperty('--orbit', amount.toFixed(2) + 'deg');
+    }
+    window.addEventListener('scroll', orbit, { passive: true });
+    orbit();
+  })();
+
   (function () {
     var identities = document.querySelectorAll('.title-sequence__identity');
     if (identities.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
