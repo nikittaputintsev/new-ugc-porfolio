@@ -343,6 +343,12 @@
     var image = root.querySelector('.paper-crumple-fallback');
     var active = false;
     var pointerId = null;
+    function crumpleAt(dx, dy) {
+      var squeeze = 1 - Math.min(0.25, (Math.abs(dx) + Math.abs(dy)) / 720);
+      var rotation = Math.max(-12, Math.min(12, dx * .045));
+      image.style.transform = 'translate(calc(-50% + ' + dx + 'px), calc(-50% + ' + dy + 'px)) rotate(' + rotation + 'deg) scale(' + squeeze + ', ' + (squeeze * .94) + ') skew(' + (dx * .025) + 'deg, ' + (dy * .018) + 'deg)';
+      image.style.filter = 'contrast(1.08) drop-shadow(0 20px 22px rgba(0,0,0,.24))';
+    }
     function reset() {
       active = false;
       image.dataset.fallbackHeld = 'false';
@@ -360,16 +366,14 @@
       hit.setPointerCapture(pointerId);
       image.dataset.fallbackHeld = 'true';
       hit.setAttribute('aria-pressed', 'true');
+      crumpleAt(0, 0);
     }
     function move(event) {
       if (!active || event.pointerId !== pointerId) return;
       var rect = root.getBoundingClientRect();
       var dx = Math.max(-90, Math.min(90, event.clientX - (rect.left + rect.width / 2)));
       var dy = Math.max(-90, Math.min(90, event.clientY - (rect.top + rect.height / 2)));
-      var squeeze = 1 - Math.min(0.25, (Math.abs(dx) + Math.abs(dy)) / 720);
-      var rotation = Math.max(-12, Math.min(12, dx * .045));
-      image.style.transform = 'translate(calc(-50% + ' + dx + 'px), calc(-50% + ' + dy + 'px)) rotate(' + rotation + 'deg) scale(' + squeeze + ', ' + (squeeze * .94) + ') skew(' + (dx * .025) + 'deg, ' + (dy * .018) + 'deg)';
-      image.style.filter = 'contrast(1.08) drop-shadow(0 20px 22px rgba(0,0,0,.24))';
+      crumpleAt(dx, dy);
     }
     hit.addEventListener('pointerdown', down);
     hit.addEventListener('pointermove', move);
