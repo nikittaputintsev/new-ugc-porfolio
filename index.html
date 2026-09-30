@@ -42,7 +42,7 @@
   .col { max-width: 1110px; margin: 0 auto; }
 
   /* ---------- Hero ---------- */
-  .hero { padding: 0 0 100px; }
+  .hero { padding: 0; }
   .scroll-expand { position: relative; width: 100%; }
   .scroll-expand__track { position: relative; }
   .scroll-expand__stage { position: sticky; top: 0; width: 100vw; height: 100svh; min-height: 520px; margin-left: calc(50% - 50vw); overflow: hidden; background: var(--bg); }
@@ -53,7 +53,7 @@
   .scroll-expand__title { top: 50%; transform: translateY(-50%); font-size: clamp(34px, 6vw, 92px); }
   .scroll-expand__name { top: 50%; transform: translateY(-50%) translateY(24px); opacity: 0; font-size: clamp(42px, 8vw, 118px); }
   .scroll-expand__hint { position: absolute; z-index: 1; left: 0; right: 0; bottom: 22px; text-align: center; color: #fff; font-family: var(--body); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; opacity: .85; }
-  .citywalk-video { position: relative; width: 100vw; height: clamp(360px, 52vw, 680px); margin: 0 calc(50% - 50vw) 80px; overflow: hidden; background: #111; }
+  .citywalk-video { position: relative; width: 100vw; height: clamp(360px, 52vw, 680px); margin: 0 calc(50% - 50vw); overflow: hidden; background: #111; }
   .citywalk-video video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .citywalk-video::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.2)); pointer-events: none; }
   .citywalk-brands { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; overflow: hidden; padding: 18px 0 22px; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
@@ -231,44 +231,6 @@
         </div>
       </div>
 
-      <div class="hero-details">
-        <p class="role">UGC creator</p>
-        <a class="pill" href="mailto:nikittaputintsev@gmail.com">
-          <svg width="24" height="18" viewBox="0 0 24 18" fill="#fff" aria-hidden="true"><path d="M0 0h24v18H0z" opacity=".85"/><path d="M0 0l12 9 12-9" fill="none" stroke="#ff3b0a" stroke-width="1.5"/></svg>
-          nikittaputintsev@gmail.com
-        </a>
-
-        <div class="socials">
-          <span>My socials:</span>
-          <a href="https://www.instagram.com/nikitta.putintsev/" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1.1.4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1.1.4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1.1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1.1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2.1.4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.4-.3 1-.4 2.1C2.7 9.9 2.7 10.3 2.7 12s0 3.5.1 4.7c.1 1.1.2 1.7.4 2.1.2.5.4.9.8 1.3.4.4.8.6 1.3.8.4.2 1 .3 2.1.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2.1-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.4.3-1 .4-2.1.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.7-.4-2.1-.2-.5-.4-.9-.8-1.3-.4-.4-.8-.6-1.3-.8-.4-.2-1-.3-2.1-.4C15.5 4 15.1 4 12 4zm0 3.1a4.9 4.9 0 110 9.8 4.9 4.9 0 010-9.8zm0 8.1a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zm6.2-8.3a1.1 1.1 0 11-2.3 0 1.1 1.1 0 012.3 0z"/></svg>
-          </a>
-          <a href="https://www.tiktok.com/@nikitta.putintsev" target="_blank" rel="noopener" aria-label="TikTok">
-            <svg viewBox="0 0 24 24"><path d="M16.6 2h-3.3v13.4a2.9 2.9 0 11-2.9-2.9c.3 0 .6 0 .9.1V9.2a6.2 6.2 0 105.3 6.2V8.6a7.8 7.8 0 004.6 1.5V6.8a4.6 4.6 0 01-4.6-4.6z"/></svg>
-          </a>
-          <a href="https://www.youtube.com/channel/UCrpYtnSiuvrD59vxZqFxxRQ" target="_blank" rel="noopener" aria-label="YouTube">
-            <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 00.5 6.2 31 31 0 000 12a31 31 0 00.5 5.8 3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1A31 31 0 0024 12a31 31 0 00-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
-          </a>
-        </div>
-
-        <hr>
-
-        <h3 class="partners">Past and current<br>partnerships:</h3>
-        <div class="logos logo-loop" aria-label="Brand partnerships">
-          <div class="logo-loop__track">
-            <div class="logo-loop__set">
-              <a class="logo-tile" href="https://www.usesprout.com/" target="_blank" rel="noopener"><img src="assets/sprout.png" alt="">Sprout</a>
-              <a class="logo-tile dark" href="https://chatcut.io/" target="_blank" rel="noopener"><img src="assets/chatcut.webp" alt="">Chatcut</a>
-              <a class="logo-tile" href="https://tab.bot/" target="_blank" rel="noopener"><img src="assets/tabbot.png" alt="">Tabbot</a>
-            </div>
-            <div class="logo-loop__set" aria-hidden="true">
-              <a class="logo-tile" href="https://www.usesprout.com/" tabindex="-1" target="_blank" rel="noopener"><img src="assets/sprout.png" alt="">Sprout</a>
-              <a class="logo-tile dark" href="https://chatcut.io/" tabindex="-1" target="_blank" rel="noopener"><img src="assets/chatcut.webp" alt="">Chatcut</a>
-              <a class="logo-tile" href="https://tab.bot/" tabindex="-1" target="_blank" rel="noopener"><img src="assets/tabbot.png" alt="">Tabbot</a>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- ===== Video bank ===== -->
