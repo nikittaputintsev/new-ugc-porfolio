@@ -161,7 +161,7 @@
   .about .ph { aspect-ratio: 1 / 1; }
   .paper-crumple { position: relative; width: 100%; height: clamp(500px, 48vw, 560px); overflow: hidden; isolation: isolate; }
   .paper-crumple-canvas { display: block; position: absolute; inset: 0; width: 100%; height: 100%; visibility: hidden; }
-  .paper-crumple-fallback { position: absolute; top: 50%; left: 50%; width: min(320px, 74%); height: min(400px, 88%); object-fit: cover; transform: translate(-50%, -50%); border-radius: 2px; box-shadow: 0 14px 28px rgba(0,0,0,.16); }
+  .paper-crumple-fallback { position: absolute; top: 50%; left: 50%; z-index: 1; width: min(320px, 74%); height: min(400px, 88%); object-fit: cover; transform: translate(-50%, -50%); border-radius: 2px; box-shadow: 0 14px 28px rgba(0,0,0,.16); transition: transform .4s cubic-bezier(.22,1,.36,1), filter .4s ease, border-radius .4s ease; }
   .paper-crumple-hit { appearance: none; position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; padding: 0; margin: 0; border: 0; background: transparent; cursor: grab; touch-action: none; user-select: none; outline: none; }
   .paper-crumple-hit[data-held='true'] { cursor: grabbing; }
   .paper-crumple-hit:disabled { cursor: default; }
@@ -317,7 +317,7 @@
       <div class="paper-crumple" data-paper-crumple data-src="assets/about.jpg" data-width="320" data-height="400" data-crumple-amount="0.85" data-crumple-duration="0.55" data-release-duration="0.4" data-status="loading" aria-label="Interactive paper portrait">
         <canvas class="paper-crumple-canvas" aria-hidden="true"></canvas>
         <img class="paper-crumple-fallback" src="assets/about.jpg" alt="Nikitta Putintsev on the beach at sunset" draggable="false">
-        <button class="paper-crumple-hit" type="button" disabled aria-label="About portrait. Hold and drag to crumple the paper." aria-pressed="false"></button>
+        <button class="paper-crumple-hit" type="button" aria-label="About portrait. Hold and drag to crumple the paper." aria-pressed="false"></button>
         <span class="paper-crumple-sr" role="status">Loading interactive paper.</span>
       </div>
     </section>
@@ -335,6 +335,49 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r170/three.min.js"></script>
 <script src="assets/paper-crumple.js"></script>
+<script>
+  (function () {
+    var root = document.querySelector('[data-paper-crumple]');
+    if (!root) return;
+    var hit = root.querySelector('.paper-crumple-hit');
+    var image = root.querySelector('.paper-crumple-fallback');
+    var active = false;
+    var pointerId = null;
+    function reset() {
+      active = false;
+      image.dataset.fallbackHeld = 'false';
+      image.style.transform = 'translate(-50%, -50%)';
+      image.style.filter = 'none';
+      hit.setAttribute('aria-pressed', 'false');
+      if (pointerId !== null && hit.hasPointerCapture(pointerId)) hit.releasePointerCapture(pointerId);
+      pointerId = null;
+    }
+    function down(event) {
+      if (event.button !== 0 || !event.isPrimary) return;
+      event.preventDefault();
+      active = true;
+      pointerId = event.pointerId;
+      hit.setPointerCapture(pointerId);
+      image.dataset.fallbackHeld = 'true';
+      hit.setAttribute('aria-pressed', 'true');
+    }
+    function move(event) {
+      if (!active || event.pointerId !== pointerId) return;
+      var rect = root.getBoundingClientRect();
+      var dx = Math.max(-90, Math.min(90, event.clientX - (rect.left + rect.width / 2)));
+      var dy = Math.max(-90, Math.min(90, event.clientY - (rect.top + rect.height / 2)));
+      var squeeze = 1 - Math.min(0.25, (Math.abs(dx) + Math.abs(dy)) / 720);
+      var rotation = Math.max(-12, Math.min(12, dx * .045));
+      image.style.transform = 'translate(calc(-50% + ' + dx + 'px), calc(-50% + ' + dy + 'px)) rotate(' + rotation + 'deg) scale(' + squeeze + ', ' + (squeeze * .94) + ') skew(' + (dx * .025) + 'deg, ' + (dy * .018) + 'deg)';
+      image.style.filter = 'contrast(1.08) drop-shadow(0 20px 22px rgba(0,0,0,.24))';
+    }
+    hit.addEventListener('pointerdown', down);
+    hit.addEventListener('pointermove', move);
+    hit.addEventListener('pointerup', reset);
+    hit.addEventListener('pointercancel', reset);
+    hit.addEventListener('lostpointercapture', reset);
+  })();
+</script>
 
 <script>
   (function () {
