@@ -1,4 +1,4 @@
-import * as THREE from 'https://unpkg.com/three@0.170.0/build/three.module.js';
+const THREE = window.THREE;
 
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
@@ -13,6 +13,10 @@ function initPaperCrumple(root) {
   const canvas = root.querySelector('.paper-crumple-canvas');
   const hit = root.querySelector('.paper-crumple-hit');
   const status = root.querySelector('.paper-crumple-sr');
+  if (!THREE) {
+    status.textContent = 'Interactive paper unavailable. Showing the original image.';
+    return;
+  }
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const aspect = height / width;
   const gridX = 30;
