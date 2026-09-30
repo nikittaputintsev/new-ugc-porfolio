@@ -58,8 +58,8 @@
   .citywalk-video::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.2)); pointer-events: none; }
   .citywalk-brands { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; overflow: hidden; padding: 18px 0 22px; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
   .citywalk-brands__track { display: flex; width: max-content; animation: citywalk-brands-scroll 12s linear infinite; }
-  .citywalk-brands__set { display: flex; flex: 0 0 100vw; align-items: center; justify-content: space-between; gap: 14px; padding: 0 5vw; }
-  .citywalk-brand { display: inline-flex; flex: 1 1 0; min-width: 0; align-items: center; justify-content: center; gap: 9px; height: 58px; padding: 8px 18px; border-radius: 999px; background: rgba(255,255,255,.94); color: var(--ink); box-shadow: 0 8px 24px rgba(0,0,0,.2); font-family: var(--classic-heading); font-size: 20px; font-weight: 700; white-space: nowrap; }
+  .citywalk-brands__set { display: grid; flex: 0 0 100vw; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; gap: 14px; padding: 0 5vw; }
+  .citywalk-brand { display: inline-flex; width: 100%; min-width: 0; align-items: center; justify-content: center; gap: 9px; height: 58px; padding: 8px 18px; border-radius: 999px; background: rgba(255,255,255,.94); color: var(--ink); box-shadow: 0 8px 24px rgba(0,0,0,.2); font-family: var(--classic-heading); font-size: 20px; font-weight: 700; white-space: nowrap; }
   .citywalk-brand.dark { background: rgba(25,25,25,.94); color: #fff; }
   .citywalk-brand img { width: 34px; height: 34px; object-fit: contain; border-radius: 8px; }
   .citywalk-brands:hover .citywalk-brands__track { animation-play-state: paused; }
@@ -178,7 +178,7 @@
     .scroll-expand__stage { min-height: 440px; }
     .citywalk-brands { padding: 12px 0 16px; }
     .citywalk-brands__set { gap: 8px; padding: 0 4vw; }
-    .citywalk-brand { min-width: 0; flex: 1 1 0; justify-content: center; height: 48px; padding: 6px 10px; font-size: 16px; }
+    .citywalk-brand { height: 48px; padding: 6px 10px; font-size: 16px; }
     .citywalk-brand img { width: 28px; height: 28px; }
   }
   @media (prefers-reduced-motion: reduce) {
