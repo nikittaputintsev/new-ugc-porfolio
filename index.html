@@ -64,6 +64,13 @@
   hr { border: 0; border-top: 2px solid var(--ink); max-width: 468px; margin: 42px 0 48px; }
   h3.partners { font-family: var(--heading); font-weight: 600; font-size: 34px; line-height: 1.3; letter-spacing: -0.01em; margin-bottom: 40px; }
   .logos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .logo-loop { display: block; overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
+  .logo-loop__track { display: flex; width: max-content; animation: logo-loop-scroll 22s linear infinite; }
+  .logo-loop__set { display: flex; gap: 20px; padding-right: 20px; }
+  .logo-loop .logo-tile { flex: 0 0 190px; width: 190px; }
+  .logo-loop:hover .logo-loop__track { animation-play-state: paused; }
+  .logo-loop .logo-tile:hover { transform: translateY(-2px) scale(1.04); }
+  @keyframes logo-loop-scroll { to { transform: translateX(-50%); } }
   .logo-tile {
     aspect-ratio: 2.5 / 1; background: #fff; display: flex; align-items: center; justify-content: center; gap: 10px;
     box-shadow: 0 1px 4px rgba(0,0,0,.06); font-family: var(--heading); font-weight: 800; font-size: 26px; letter-spacing: -0.02em;
@@ -140,6 +147,9 @@
     .contact { padding: 90px 0 110px; }
     .contact .pill { padding: 18px 20px; font-size: 18px; }
   }
+  @media (prefers-reduced-motion: reduce) {
+    .logo-loop__track { animation: none; }
+  }
 </style>
 </head>
 <body>
@@ -178,10 +188,19 @@
         <hr>
 
         <h3 class="partners">Past and current<br>partnerships:</h3>
-        <div class="logos">
-          <a class="logo-tile" href="https://www.usesprout.com/" target="_blank" rel="noopener"><img src="assets/sprout.png" alt="">Sprout</a>
-          <a class="logo-tile dark" href="https://chatcut.io/" target="_blank" rel="noopener"><img src="assets/chatcut.webp" alt="">Chatcut</a>
-          <a class="logo-tile" href="https://tab.bot/" target="_blank" rel="noopener"><img src="assets/tabbot.png" alt="">Tabbot</a>
+        <div class="logos logo-loop" aria-label="Brand partnerships">
+          <div class="logo-loop__track">
+            <div class="logo-loop__set">
+              <a class="logo-tile" href="https://www.usesprout.com/" target="_blank" rel="noopener"><img src="assets/sprout.png" alt="">Sprout</a>
+              <a class="logo-tile dark" href="https://chatcut.io/" target="_blank" rel="noopener"><img src="assets/chatcut.webp" alt="">Chatcut</a>
+              <a class="logo-tile" href="https://tab.bot/" target="_blank" rel="noopener"><img src="assets/tabbot.png" alt="">Tabbot</a>
+            </div>
+            <div class="logo-loop__set" aria-hidden="true">
+              <a class="logo-tile" href="https://www.usesprout.com/" tabindex="-1" target="_blank" rel="noopener"><img src="assets/sprout.png" alt="">Sprout</a>
+              <a class="logo-tile dark" href="https://chatcut.io/" tabindex="-1" target="_blank" rel="noopener"><img src="assets/chatcut.webp" alt="">Chatcut</a>
+              <a class="logo-tile" href="https://tab.bot/" tabindex="-1" target="_blank" rel="noopener"><img src="assets/tabbot.png" alt="">Tabbot</a>
+            </div>
+          </div>
         </div>
       </div>
 
