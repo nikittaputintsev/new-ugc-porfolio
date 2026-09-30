@@ -370,74 +370,34 @@
     var finalText = heading.textContent;
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    var duration = 350;
-    var stagger = 30;
-    var shuffleTimes = 1;
     var hasRun = false;
+    var spans = [];
     var timers = [];
-    var characters = [];
-    function randomChar() { return charset.charAt(Math.floor(Math.random() * charset.length)); }
-    function build() {
-      heading.textContent = '';
-      characters = [];
-      Array.from(finalText).forEach(function (character) {
-        if (character === ' ') {
-          var space = document.createElement('span');
-          space.className = 'shuffle-char';
-          space.innerHTML = '&nbsp;';
-          heading.appendChild(space);
-          characters.push({ space: true, node: space, character: character });
-          return;
-        }
-        var char = document.createElement('span');
-        char.className = 'shuffle-char';
-        char.textContent = character;
-        heading.appendChild(char);
-        char.style.width = Math.max(1, char.getBoundingClientRect().width) + 'px';
-        characters.push({ node: char, character: character });
-      });
-    }
+    heading.textContent = '';
+    Array.from(finalText).forEach(function (character) {
+      var span = document.createElement('span');
+      span.className = 'shuffle-char';
+      span.textContent = character === ' ' ? '\u00a0' : character;
+      heading.appendChild(span);
+      spans.push({ span: span, character: character });
+    });
     function play() {
       timers.forEach(window.clearTimeout);
       timers = [];
-      build();
-      if (reduced) return;
-      characters.forEach(function (item, index) {
-        if (item.space) return;
-        var width = item.node.getBoundingClientRect().width;
-        var strip = document.createElement('span');
-        strip.style.display = 'inline-flex';
-        strip.style.whiteSpace = 'nowrap';
-        strip.style.willChange = 'transform';
-        strip.style.transform = 'translate3d(' + (-width * (shuffleTimes + 1)) + 'px, 0, 0)';
-        var cells = [];
-        for (var roll = 0; roll < shuffleTimes + 1; roll += 1) {
-          var interim = document.createElement('span');
-          interim.textContent = randomChar();
-          interim.style.width = width + 'px';
-          interim.style.textAlign = 'center';
-          cells.push(interim);
-          strip.appendChild(interim);
+      spans.forEach(function (item, index) {
+        if (reduced || item.character === ' ') {
+          item.span.textContent = item.character === ' ' ? '\u00a0' : item.character;
+          return;
         }
-        var finalCell = document.createElement('span');
-        finalCell.textContent = item.character;
-        finalCell.style.width = width + 'px';
-        finalCell.style.textAlign = 'center';
-        strip.appendChild(finalCell);
-        item.node.textContent = '';
-        item.node.style.overflow = 'hidden';
-        item.node.style.verticalAlign = 'bottom';
-        item.node.appendChild(strip);
-        var delay = (index % 2 ? stagger * 1000 : 0) + index * stagger * 1000;
-        timers.push(window.setTimeout(function (currentStrip) {
-          return function () {
-            currentStrip.style.transition = 'transform ' + duration + 'ms cubic-bezier(.22,1,.36,1)';
-            currentStrip.style.transform = 'translate3d(0, 0, 0)';
-          };
-        }(strip), delay));
+        for (var tick = 0; tick <= 6; tick += 1) {
+          timers.push(window.setTimeout(function (step, current) {
+            return function () {
+              current.span.textContent = step === 6 ? current.character : charset.charAt(Math.floor(Math.random() * charset.length));
+            };
+          }(tick, item), index * 30 + tick * 48));
+        }
       });
     }
-    build();
     heading.addEventListener('mouseenter', function () { if (!reduced) play(); });
     if ('IntersectionObserver' in window && !reduced) {
       var observer = new IntersectionObserver(function (entries) {
