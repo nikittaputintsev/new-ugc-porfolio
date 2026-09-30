@@ -478,7 +478,8 @@
         render();
         window.setTimeout(function () {
           cards.forEach(function (card) { card.style.transition = 'transform .65s cubic-bezier(.22,1,.36,1), opacity .35s ease'; });
-          rotation = 0;
+          // Do not animate from -360deg back to 0deg: that would visibly spin a second lap.
+          rotation = -360;
           index = 0;
           render();
           updateCount();
