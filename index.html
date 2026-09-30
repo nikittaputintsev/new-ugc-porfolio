@@ -159,6 +159,13 @@
   .about p { font-size: 22px; line-height: 1.7; margin-bottom: 26px; max-width: 560px; }
   .about .pill { margin-top: -4px; }
   .about .ph { aspect-ratio: 1 / 1; }
+  .paper-crumple { position: relative; width: 100%; height: clamp(500px, 48vw, 560px); overflow: hidden; isolation: isolate; }
+  .paper-crumple-canvas { display: block; position: absolute; inset: 0; width: 100%; height: 100%; visibility: hidden; }
+  .paper-crumple-fallback { position: absolute; top: 50%; left: 50%; width: min(320px, 74%); height: min(400px, 88%); object-fit: cover; transform: translate(-50%, -50%); border-radius: 2px; box-shadow: 0 14px 28px rgba(0,0,0,.16); }
+  .paper-crumple-hit { appearance: none; position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; padding: 0; margin: 0; border: 0; background: transparent; cursor: grab; touch-action: none; user-select: none; outline: none; }
+  .paper-crumple-hit[data-held='true'] { cursor: grabbing; }
+  .paper-crumple-hit:disabled { cursor: default; }
+  .paper-crumple-sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
   /* ---------- Contact ---------- */
   .contact { background: #000; color: #fff; padding: 140px 0 160px; text-align: center; }
@@ -200,6 +207,7 @@
     .citywalk-socials a { width: 32px; height: 32px; }
     .bounce-cards { height: 360px; }
     .bounce-card { width: 82vw; }
+    .paper-crumple { height: 470px; }
   }
   @media (prefers-reduced-motion: reduce) {
     .logo-loop__track { animation: none; }
@@ -306,7 +314,12 @@
         <p>HOWEVER I do not work with just anyone. I only work with a brand I genuinely believe in. So if you're some freakin ai slop scam, kindly find someone else. But if you're a tech company that has a real product, sweet, then feel free to reach out. I'd love to see whatchu got</p>
         <a class="pill" href="#contact">Reach out</a>
       </div>
-      <div class="ph"><img src="assets/about.jpg" alt="Nikitta Putintsev on the beach at sunset" style="object-position: center 30%"></div>
+      <div class="paper-crumple" data-paper-crumple data-src="assets/about.jpg" data-width="320" data-height="400" data-crumple-amount="0.85" data-crumple-duration="0.55" data-release-duration="0.4" data-status="loading" aria-label="Interactive paper portrait">
+        <canvas class="paper-crumple-canvas" aria-hidden="true"></canvas>
+        <img class="paper-crumple-fallback" src="assets/about.jpg" alt="Nikitta Putintsev on the beach at sunset" draggable="false">
+        <button class="paper-crumple-hit" type="button" disabled aria-label="About portrait. Hold and drag to crumple the paper." aria-pressed="false"></button>
+        <span class="paper-crumple-sr" role="status">Loading interactive paper.</span>
+      </div>
     </section>
 
   </div></div>
@@ -319,6 +332,8 @@
     </div>
   </section>
 </main>
+
+<script type="module" src="assets/paper-crumple.js"></script>
 
 <script>
   (function () {
