@@ -344,7 +344,7 @@
     function readProgress() {
       if (reduced) return 1;
       var span = Math.max(1, stageHeight * scrollDistance);
-      return clamp(-track.getBoundingClientRect().top / span, 0, 1);
+      return clamp(-root.getBoundingClientRect().top / span, 0, 1);
     }
     function tick() {
       current += (target - current) * .16;
@@ -359,6 +359,7 @@
     }
     function onResize() { measure(); target = readProgress(); current = target; apply(current); }
     window.addEventListener('scroll', onScroll, { passive: true });
+    document.addEventListener('scroll', onScroll, { passive: true, capture: true });
     window.addEventListener('resize', onResize);
     measure();
     target = readProgress();
