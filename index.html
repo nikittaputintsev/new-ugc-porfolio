@@ -31,12 +31,11 @@
 
   /* ---------- Header ---------- */
   header {
-    position: sticky; top: 0; z-index: 10; background: var(--bg);
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 26px 40px;
+    position: absolute; top: 0; left: 0; right: 0; z-index: 10; background: transparent;
+    display: flex; justify-content: flex-start; align-items: center;
+    padding: 26px 40px; pointer-events: none;
   }
-  .brand { font-family: var(--heading); font-weight: 300; font-size: 34px; letter-spacing: -0.02em; }
-  nav a { font-family: var(--heading); font-size: 26px; font-weight: 400; border-bottom: 2px solid var(--ink); padding-bottom: 2px; }
+  .brand { font-family: var(--heading); font-weight: 300; font-size: 34px; letter-spacing: -0.02em; pointer-events: auto; }
 
   .wrap { max-width: 1280px; margin: 0 auto; padding: 0 16px; }
   .col { max-width: 1110px; margin: 0 auto; }
@@ -165,8 +164,7 @@
 <body>
 
 <header>
-  <a class="brand" href="#top">NikittaPutintsev</a>
-  <nav><a href="#top">Home</a></nav>
+  <a class="brand" href="#top">nikitta putintsev</a>
 </header>
 
 <main id="top">
