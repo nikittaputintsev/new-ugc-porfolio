@@ -113,10 +113,15 @@
   .bank h2 { font-family: var(--heading); font-weight: 700; font-size: clamp(38px, 4.4vw, 64px); letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 36px; }
   .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
   .grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px 18px; row-gap: 56px; }
-  .circular-carousel { position: relative; height: clamp(460px, 58vw, 680px); margin: 0 -16px; perspective: 1500px; overflow: hidden; touch-action: pan-y; }
+  .circular-carousel { position: relative; height: clamp(480px, 56vw, 560px); margin: 0 -16px; perspective: 1500px; overflow: hidden; touch-action: pan-y; }
   .circular-carousel__stage { position: absolute; inset: 0; display: grid; place-items: center; transform-style: preserve-3d; }
   .circular-carousel__ring { position: relative; width: 1px; height: 1px; transform-style: preserve-3d; will-change: transform; }
-  .circular-carousel__card { position: absolute; left: 50%; top: 50%; width: clamp(170px, 19vw, 240px); aspect-ratio: 9 / 16; margin: 0; transform: translate(-50%, -50%) rotateY(var(--angle)) translateZ(var(--radius)); transform-style: preserve-3d; backface-visibility: hidden; overflow: hidden; border-radius: 12px; box-shadow: 0 18px 45px rgba(0,0,0,.18); background: var(--ph); }
+  .circular-carousel__card { position: absolute; left: 50%; top: 50%; width: clamp(180px, 20vw, 220px); aspect-ratio: 1; margin: 0; transform: translate(-50%, -50%) rotateY(var(--angle)) translateZ(var(--radius)); transform-style: preserve-3d; backface-visibility: hidden; overflow: hidden; border-radius: 12px; box-shadow: 0 18px 45px rgba(0,0,0,.18); background: var(--ph); animation: circular-card-rise .9s cubic-bezier(.22,1,.36,1) both; }
+  .circular-carousel__caption { position: absolute; inset: auto 0 0; z-index: 1; padding: 34px 14px 14px; color: #fff; background: linear-gradient(transparent, rgba(0,0,0,.78)); font-family: var(--body); pointer-events: none; }
+  .circular-carousel__caption strong, .circular-carousel__caption span { display: block; }
+  .circular-carousel__caption strong { font-size: 14px; font-weight: 600; }
+  .circular-carousel__caption span { margin-top: 3px; color: rgba(255,255,255,.72); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+  @keyframes circular-card-rise { from { opacity: 0; transform: translate(-50%, calc(-50% + 100px)) rotateY(var(--angle)) translateZ(var(--radius)) scale(.86); } to { opacity: 1; transform: translate(-50%, -50%) rotateY(var(--angle)) translateZ(var(--radius)) scale(1); } }
   .circular-carousel__card iframe { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0; }
   .circular-carousel__controls { position: absolute; left: 50%; bottom: 22px; z-index: 2; display: flex; gap: 10px; transform: translateX(-50%); }
   .circular-carousel__button { width: 44px; height: 44px; border: 1px solid var(--ink); border-radius: 50%; background: var(--bg); color: var(--ink); font: 600 20px/1 var(--body); cursor: pointer; }
@@ -241,13 +246,13 @@
       <h2>Brand Videos</h2>
       <div class="circular-carousel" data-circular-carousel aria-label="Brand video carousel">
         <div class="circular-carousel__stage"><div class="circular-carousel__ring">
-          <div class="circular-carousel__card"><iframe src="https://player.vimeo.com/video/1231377153?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Sprout tier list" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
-          <div class="circular-carousel__card"><iframe src="https://player.vimeo.com/video/1231379514?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Sprout good better best" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
-          <div class="circular-carousel__card"><iframe src="https://player.vimeo.com/video/1231381157?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Sprout friendly reminder" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
-          <div class="circular-carousel__card"><iframe src="https://player.vimeo.com/video/1231382555?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Sprout green screen" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
-          <div class="circular-carousel__card"><iframe src="https://player.vimeo.com/video/1231386600?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Chatcut video" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
-          <div class="circular-carousel__card"><iframe src="https://player.vimeo.com/video/1231413120?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Chatcut video 2" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
-          <div class="circular-carousel__card"><iframe src="https://player.vimeo.com/video/1231383542?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Tabbot 3 websites" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+          <div class="circular-carousel__card"><iframe src="https://player.vimeo.com/video/1231377153?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Sprout tier list" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe><div class="circular-carousel__caption"><strong>Tier list</strong><span>Sprout</span></div></div>
+          <div class="circular-carousel__card"><iframe src="https://player.vimeo.com/video/1231379514?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Sprout good better best" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe><div class="circular-carousel__caption"><strong>Good / Better / Best</strong><span>Sprout</span></div></div>
+          <div class="circular-carousel__card"><iframe src="https://player.vimeo.com/video/1231381157?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Sprout friendly reminder" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe><div class="circular-carousel__caption"><strong>Friendly reminder</strong><span>Sprout</span></div></div>
+          <div class="circular-carousel__card"><iframe src="https://player.vimeo.com/video/1231382555?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Sprout green screen" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe><div class="circular-carousel__caption"><strong>Green screen</strong><span>Sprout</span></div></div>
+          <div class="circular-carousel__card"><iframe src="https://player.vimeo.com/video/1231386600?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Chatcut video" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe><div class="circular-carousel__caption"><strong>Product story</strong><span>Chatcut</span></div></div>
+          <div class="circular-carousel__card"><iframe src="https://player.vimeo.com/video/1231413120?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Chatcut video 2" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe><div class="circular-carousel__caption"><strong>Feature highlight</strong><span>Chatcut</span></div></div>
+          <div class="circular-carousel__card"><iframe src="https://player.vimeo.com/video/1231383542?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Tabbot 3 websites" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe><div class="circular-carousel__caption"><strong>3 websites</strong><span>Tabbot</span></div></div>
         </div></div>
         <div class="circular-carousel__controls"><button class="circular-carousel__button" data-carousel-prev aria-label="Previous brand video">←</button><button class="circular-carousel__button" data-carousel-next aria-label="Next brand video">→</button></div><span class="circular-carousel__count" aria-live="polite">01 / 07</span>
       </div>
@@ -447,6 +452,7 @@
         cards.forEach(function (card, cardIndex) {
           card.style.setProperty('--angle', (cardIndex * step) + 'deg');
           card.style.setProperty('--radius', radius + 'px');
+          card.style.animationDelay = (cardIndex * 70) + 'ms';
         });
         ring.style.transform = 'rotateY(' + rotation + 'deg)';
       }
