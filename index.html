@@ -370,27 +370,41 @@
     var finalText = heading.textContent;
     var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    var played = false;
+    var hasRun = false;
+    var spans = [];
+    var timers = [];
+    heading.textContent = '';
+    Array.from(finalText).forEach(function (character) {
+      var span = document.createElement('span');
+      span.className = 'shuffle-char';
+      span.textContent = character === ' ' ? '\u00a0' : character;
+      heading.appendChild(span);
+      spans.push({ span: span, character: character });
+    });
     function play() {
-      if (played) return;
-      played = true;
-      heading.textContent = '';
-      Array.from(finalText).forEach(function (character, index) {
-        var span = document.createElement('span');
-        span.className = 'shuffle-char';
-        span.textContent = character === ' ' ? '\u00a0' : (reduced ? character : charset.charAt(Math.floor(Math.random() * charset.length)));
-        heading.appendChild(span);
-        if (!reduced && character !== ' ') {
-          window.setTimeout(function () { span.textContent = character; }, 260 + index * 34);
+      timers.forEach(window.clearTimeout);
+      timers = [];
+      spans.forEach(function (item, index) {
+        if (reduced || item.character === ' ') {
+          item.span.textContent = item.character === ' ' ? '\u00a0' : item.character;
+          return;
+        }
+        for (var tick = 0; tick <= 6; tick += 1) {
+          timers.push(window.setTimeout(function (step, current) {
+            return function () {
+              current.span.textContent = step === 6 ? current.character : charset.charAt(Math.floor(Math.random() * charset.length));
+            };
+          }(tick, item), index * 30 + tick * 48));
         }
       });
     }
+    heading.addEventListener('mouseenter', function () { if (!reduced) play(); });
     if ('IntersectionObserver' in window && !reduced) {
       var observer = new IntersectionObserver(function (entries) {
-        if (entries[0].isIntersecting) { play(); observer.disconnect(); }
+        if (entries[0].isIntersecting && !hasRun) { hasRun = true; play(); observer.disconnect(); }
       }, { threshold: .1 });
       observer.observe(heading);
-    } else { play(); }
+    } else if (!hasRun) { hasRun = true; play(); }
   })();
 
   (function () {
