@@ -473,8 +473,8 @@
         introPlayed = true;
         window.clearInterval(timer);
         if (reduced || cards.length < 2) return;
-        cards.forEach(function (card) { card.style.transition = 'transform 1.55s cubic-bezier(.22,1,.36,1), opacity 1.55s ease'; });
-        rotation = -1080;
+        cards.forEach(function (card) { card.style.transition = 'transform 1.15s cubic-bezier(.22,1,.36,1), opacity 1.15s ease'; });
+        rotation = -360;
         render();
         window.setTimeout(function () {
           cards.forEach(function (card) { card.style.transition = 'transform .65s cubic-bezier(.22,1,.36,1), opacity .35s ease'; });
@@ -482,7 +482,7 @@
           index = 0;
           render();
           updateCount();
-        }, 1650);
+        }, 1250);
       }
       function move(delta) {
         if (cards.length < 2) return;
