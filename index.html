@@ -21,6 +21,7 @@
     --ph: #e7e7e7;
     --ph-ink: #9a9a9a;
     --heading: "Press Start 2P", "Urbanist", "Helvetica Neue", Arial, sans-serif;
+    --classic-heading: "Urbanist", "Helvetica Neue", Arial, sans-serif;
     --body: "Poppins", "Helvetica Neue", Arial, sans-serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -48,7 +49,7 @@
   .scroll-expand__frame { position: absolute; left: 29%; top: 21%; width: 42%; height: 58%; border-radius: 24px; will-change: left, top, width, height, border-radius; overflow: hidden; }
   .scroll-expand__media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.2); will-change: transform; }
   .scroll-expand__scrim { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0) 60%); opacity: .25; }
-  .scroll-expand__title, .scroll-expand__name { position: absolute; left: 0; right: 0; z-index: 1; margin: 0; padding: 0 6%; text-align: center; color: #fff !important; -webkit-text-fill-color: #fff; font-family: var(--heading); font-weight: 700; letter-spacing: -0.04em; line-height: .95; -webkit-text-stroke: 3px #000; paint-order: stroke fill; text-shadow: none; pointer-events: none; }
+  .scroll-expand__title, .scroll-expand__name { position: absolute; left: 0; right: 0; z-index: 1; margin: 0; padding: 0 6%; text-align: center; color: #fff !important; -webkit-text-fill-color: #fff; font-family: var(--classic-heading); font-weight: 700; letter-spacing: -0.04em; line-height: .95; -webkit-text-stroke: 3px #000; paint-order: stroke fill; text-shadow: none; pointer-events: none; }
   .scroll-expand__title { top: 50%; transform: translateY(-50%); font-size: clamp(34px, 6vw, 92px); }
   .scroll-expand__name { top: 50%; transform: translateY(-50%) translateY(24px); opacity: 0; font-size: clamp(42px, 8vw, 118px); }
   .scroll-expand__hint { position: absolute; z-index: 1; left: 0; right: 0; bottom: 22px; text-align: center; color: #fff; font-family: var(--body); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; opacity: .85; }
@@ -81,7 +82,7 @@
   @keyframes logo-loop-scroll { to { transform: translateX(-50%); } }
   .logo-tile {
     aspect-ratio: 2.5 / 1; background: #fff; display: flex; align-items: center; justify-content: center; gap: 10px;
-    box-shadow: 0 1px 4px rgba(0,0,0,.06); font-family: var(--heading); font-weight: 800; font-size: 26px; letter-spacing: -0.02em;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06); font-family: var(--classic-heading); font-weight: 800; font-size: 26px; letter-spacing: -0.02em;
   }
   .logo-tile img { height: 44px; width: 44px; object-fit: contain; border-radius: 10px; }
   .logo-tile.dark { background: #222; color: #fff; }
