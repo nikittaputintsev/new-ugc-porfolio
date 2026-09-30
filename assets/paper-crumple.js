@@ -178,8 +178,7 @@ function initPaperCrumple(root) {
   resize();
   deform(0);
 
-  const loader = new THREE.TextureLoader();
-  loader.load(src, loaded => {
+  function enableInteractive(loaded) {
     texture = loaded;
     texture.colorSpace = THREE.SRGBColorSpace;
     texture.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
@@ -192,10 +191,22 @@ function initPaperCrumple(root) {
     canvas.style.visibility = 'visible';
     image.style.visibility = 'hidden';
     status.textContent = 'Interactive paper ready. Hold and drag the image to crumple it.';
-  }, undefined, () => {
+  }
+  function useExistingImage() {
+    if (!image.naturalWidth) return;
+    const loaded = new THREE.Texture(image);
+    loaded.needsUpdate = true;
+    enableInteractive(loaded);
+  }
+  function imageFailed() {
     root.dataset.status = 'error';
     status.textContent = 'Interactive paper unavailable. Showing the original image.';
-  });
+  }
+  if (image.complete && image.naturalWidth) useExistingImage();
+  else {
+    image.addEventListener('load', useExistingImage, { once: true });
+    image.addEventListener('error', imageFailed, { once: true });
+  }
 
   animate(lastTime);
   root._paperCleanup = () => {
