@@ -311,7 +311,7 @@
     var current = 0;
     var raf = 0;
     var running = false;
-    var scrollDistance = 1.2;
+    var scrollDistance = 1.4;
     var holdDistance = .35;
     function clamp(value, min, max) { return Math.min(max, Math.max(min, value)); }
     function smoothstep(edge0, edge1, value) {
@@ -319,11 +319,12 @@
       return t * t * (3 - 2 * t);
     }
     function apply(progress) {
-      var eased = smoothstep(0, 1, progress);
+      // Keep the crop opening and the media zoom synchronized across the full scroll.
+      var eased = progress;
       var inset = 21 * (1 - eased);
       var side = 29 * (1 - eased);
       frame.style.clipPath = 'inset(' + inset + '% ' + side + '% ' + inset + '% ' + side + ' round ' + (24 * (1 - eased)) + 'px)';
-      media.style.transform = 'scale(' + (1.2 - (.2 * eased)) + ')';
+      media.style.transform = 'scale(' + (1.24 - (.24 * eased)) + ')';
       var titleOut = smoothstep(.4, .88, progress);
       var nameIn = smoothstep(.68, 1, progress);
       title.style.opacity = String(1 - titleOut);
