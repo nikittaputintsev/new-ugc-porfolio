@@ -162,8 +162,11 @@
   .paper-crumple { position: relative; width: 100%; height: clamp(500px, 48vw, 560px); overflow: hidden; isolation: isolate; }
   .paper-crumple-canvas { display: block; position: absolute; inset: 0; width: 100%; height: 100%; visibility: hidden; }
   .paper-crumple-fallback { position: absolute; top: 50%; left: 50%; z-index: 1; width: min(320px, 74%); height: min(400px, 88%); object-fit: cover; transform: translate(-50%, -50%); border-radius: 2px; box-shadow: 0 14px 28px rgba(0,0,0,.16); transition: transform .4s cubic-bezier(.22,1,.36,1), filter .4s ease, border-radius .4s ease; }
-  .paper-crumple::before { content: ""; position: absolute; top: 50%; left: 50%; z-index: 2; width: min(320px, 74%); height: min(400px, 88%); transform: translate(calc(-50% + var(--paper-dx, 0px)), calc(-50% + var(--paper-dy, 0px))) rotate(var(--paper-rot, 0deg)) scale(var(--paper-scale, 1)); border-radius: 12% 38% 18% 42%; opacity: 0; pointer-events: none; background: linear-gradient(28deg, transparent 0 42%, rgba(255,255,255,.62) 44%, rgba(80,60,48,.25) 46%, transparent 49%), linear-gradient(151deg, transparent 0 48%, rgba(255,255,255,.55) 50%, rgba(65,45,35,.2) 52%, transparent 55%), repeating-linear-gradient(72deg, rgba(40,25,18,.13) 0 1px, transparent 1px 34px), radial-gradient(ellipse at 28% 32%, rgba(255,255,255,.68), transparent 36%); mix-blend-mode: multiply; filter: blur(.25px) contrast(1.25); transition: opacity .2s ease, transform .4s cubic-bezier(.22,1,.36,1), border-radius .4s ease; }
-  .paper-crumple[data-fallback-held="true"]::before { opacity: .8; }
+  .paper-crumple-creases { position: absolute; top: 50%; left: 50%; z-index: 2; width: min(320px, 74%); height: min(400px, 88%); overflow: visible; transform: translate(calc(-50% + var(--paper-dx, 0px)), calc(-50% + var(--paper-dy, 0px))) rotate(var(--paper-rot, 0deg)) scale(var(--paper-scale, 1)); opacity: 0; pointer-events: none; mix-blend-mode: soft-light; transition: opacity .2s ease, transform .4s cubic-bezier(.22,1,.36,1); }
+  .paper-crumple-creases path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .paper-crumple-creases .crease-dark { stroke: rgba(38,25,20,.58); stroke-width: 3.2; filter: blur(1.1px); }
+  .paper-crumple-creases .crease-light { stroke: rgba(255,250,240,.82); stroke-width: 2.1; filter: blur(.65px); transform: translate(-2px, -2px); }
+  .paper-crumple[data-fallback-held="true"] .paper-crumple-creases { opacity: 1; }
   .paper-crumple-hit { appearance: none; position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; padding: 0; margin: 0; border: 0; background: transparent; cursor: grab; touch-action: none; user-select: none; outline: none; }
   .paper-crumple-hit[data-held='true'] { cursor: grabbing; }
   .paper-crumple-hit:disabled { cursor: default; }
@@ -319,6 +322,32 @@
       <div class="paper-crumple" data-paper-crumple data-src="assets/about.jpg" data-width="320" data-height="400" data-crumple-amount="0.85" data-crumple-duration="0.55" data-release-duration="0.4" data-status="loading" aria-label="Interactive paper portrait">
         <canvas class="paper-crumple-canvas" aria-hidden="true"></canvas>
         <img class="paper-crumple-fallback" src="assets/about.jpg" alt="Nikitta Putintsev on the beach at sunset" draggable="false">
+        <svg class="paper-crumple-creases" viewBox="0 0 320 400" aria-hidden="true">
+          <defs>
+            <filter id="paper-wrinkle-filter" x="-12%" y="-12%" width="124%" height="124%">
+              <feTurbulence type="fractalNoise" baseFrequency=".035 .055" numOctaves="3" seed="7" result="noise"></feTurbulence>
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="15" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
+            </filter>
+          </defs>
+          <g class="crease-dark" filter="url(#paper-wrinkle-filter)">
+            <path d="M12 38 C54 62 78 96 122 86 S188 30 228 67 S276 104 310 76"></path>
+            <path d="M8 118 C44 94 78 142 112 132 S174 104 207 142 S264 170 312 136"></path>
+            <path d="M7 202 C50 178 70 224 112 210 S176 174 214 220 S270 252 313 218"></path>
+            <path d="M14 286 C48 260 90 306 126 282 S188 252 225 292 S274 322 307 300"></path>
+            <path d="M42 8 C70 54 52 94 78 132 S112 196 84 242 S75 326 108 390"></path>
+            <path d="M148 4 C122 48 160 88 140 126 S124 206 160 244 S180 330 154 396"></path>
+            <path d="M266 10 C232 54 274 96 246 138 S222 202 260 250 S280 334 246 392"></path>
+          </g>
+          <g class="crease-light">
+            <path d="M17 34 C57 58 82 91 124 81 S190 27 231 63 S278 100 314 72"></path>
+            <path d="M12 114 C47 90 80 138 114 128 S176 100 210 138 S267 166 316 132"></path>
+            <path d="M11 198 C53 174 73 220 115 206 S179 170 217 216 S273 248 317 214"></path>
+            <path d="M18 282 C52 256 94 302 130 278 S192 248 229 288 S278 318 311 296"></path>
+            <path d="M46 4 C74 50 56 90 82 128 S116 192 88 238 S79 322 112 386"></path>
+            <path d="M152 0 C126 44 164 84 144 122 S128 202 164 240 S184 326 158 392"></path>
+            <path d="M270 6 C236 50 278 92 250 134 S226 198 264 246 S284 330 250 388"></path>
+          </g>
+        </svg>
         <button class="paper-crumple-hit" type="button" aria-label="About portrait. Hold and drag to crumple the paper." aria-pressed="false"></button>
         <span class="paper-crumple-sr" role="status">Loading interactive paper.</span>
       </div>
@@ -349,7 +378,7 @@
       var squeeze = .72 - Math.min(0.18, (Math.abs(dx) + Math.abs(dy)) / 900);
       var rotation = Math.max(-12, Math.min(12, dx * .045));
       image.style.transform = 'translate(calc(-50% + ' + dx + 'px), calc(-50% + ' + dy + 'px)) rotate(' + rotation + 'deg) scale(' + squeeze + ', ' + (squeeze * .94) + ') skew(' + (dx * .025) + 'deg, ' + (dy * .018) + 'deg)';
-      image.style.filter = 'contrast(1.08) drop-shadow(0 20px 22px rgba(0,0,0,.24))';
+      image.style.filter = 'url(#paper-wrinkle-filter) contrast(1.08) drop-shadow(0 20px 22px rgba(0,0,0,.24))';
       image.style.borderRadius = '18% 42% 24% 38%';
       image.style.clipPath = 'polygon(8% 3%, 91% 0, 98% 12%, 94% 47%, 100% 91%, 82% 98%, 48% 94%, 10% 100%, 0 76%, 5% 42%, 0 12%)';
     }
