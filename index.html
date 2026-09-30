@@ -162,6 +162,8 @@
   .paper-crumple { position: relative; width: 100%; height: clamp(500px, 48vw, 560px); overflow: hidden; isolation: isolate; }
   .paper-crumple-canvas { display: block; position: absolute; inset: 0; width: 100%; height: 100%; visibility: hidden; }
   .paper-crumple-fallback { position: absolute; top: 50%; left: 50%; z-index: 1; width: min(320px, 74%); height: min(400px, 88%); object-fit: cover; transform: translate(-50%, -50%); border-radius: 2px; box-shadow: 0 14px 28px rgba(0,0,0,.16); transition: transform .4s cubic-bezier(.22,1,.36,1), filter .4s ease, border-radius .4s ease; }
+  .paper-crumple::before { content: ""; position: absolute; top: 50%; left: 50%; z-index: 2; width: min(320px, 74%); height: min(400px, 88%); transform: translate(calc(-50% + var(--paper-dx, 0px)), calc(-50% + var(--paper-dy, 0px))) rotate(var(--paper-rot, 0deg)) scale(var(--paper-scale, 1)); border-radius: 12% 38% 18% 42%; opacity: 0; pointer-events: none; background: linear-gradient(28deg, transparent 0 42%, rgba(255,255,255,.62) 44%, rgba(80,60,48,.25) 46%, transparent 49%), linear-gradient(151deg, transparent 0 48%, rgba(255,255,255,.55) 50%, rgba(65,45,35,.2) 52%, transparent 55%), repeating-linear-gradient(72deg, rgba(40,25,18,.13) 0 1px, transparent 1px 34px), radial-gradient(ellipse at 28% 32%, rgba(255,255,255,.68), transparent 36%); mix-blend-mode: multiply; filter: blur(.25px) contrast(1.25); transition: opacity .2s ease, transform .4s cubic-bezier(.22,1,.36,1), border-radius .4s ease; }
+  .paper-crumple[data-fallback-held="true"]::before { opacity: .8; }
   .paper-crumple-hit { appearance: none; position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; padding: 0; margin: 0; border: 0; background: transparent; cursor: grab; touch-action: none; user-select: none; outline: none; }
   .paper-crumple-hit[data-held='true'] { cursor: grabbing; }
   .paper-crumple-hit:disabled { cursor: default; }
@@ -344,16 +346,25 @@
     var active = false;
     var pointerId = null;
     function crumpleAt(dx, dy) {
-      var squeeze = 1 - Math.min(0.25, (Math.abs(dx) + Math.abs(dy)) / 720);
+      var squeeze = .72 - Math.min(0.18, (Math.abs(dx) + Math.abs(dy)) / 900);
       var rotation = Math.max(-12, Math.min(12, dx * .045));
       image.style.transform = 'translate(calc(-50% + ' + dx + 'px), calc(-50% + ' + dy + 'px)) rotate(' + rotation + 'deg) scale(' + squeeze + ', ' + (squeeze * .94) + ') skew(' + (dx * .025) + 'deg, ' + (dy * .018) + 'deg)';
       image.style.filter = 'contrast(1.08) drop-shadow(0 20px 22px rgba(0,0,0,.24))';
+      image.style.borderRadius = '18% 42% 24% 38%';
+      image.style.clipPath = 'polygon(8% 3%, 91% 0, 98% 12%, 94% 47%, 100% 91%, 82% 98%, 48% 94%, 10% 100%, 0 76%, 5% 42%, 0 12%)';
     }
     function reset() {
       active = false;
       image.dataset.fallbackHeld = 'false';
+      root.dataset.fallbackHeld = 'false';
       image.style.transform = 'translate(-50%, -50%)';
       image.style.filter = 'none';
+      image.style.borderRadius = '2px';
+      image.style.clipPath = 'none';
+      root.style.removeProperty('--paper-dx');
+      root.style.removeProperty('--paper-dy');
+      root.style.removeProperty('--paper-rot');
+      root.style.removeProperty('--paper-scale');
       hit.setAttribute('aria-pressed', 'false');
       if (pointerId !== null && hit.hasPointerCapture(pointerId)) hit.releasePointerCapture(pointerId);
       pointerId = null;
@@ -365,8 +376,10 @@
       pointerId = event.pointerId;
       hit.setPointerCapture(pointerId);
       image.dataset.fallbackHeld = 'true';
+      root.dataset.fallbackHeld = 'true';
       hit.setAttribute('aria-pressed', 'true');
       crumpleAt(0, 0);
+      root.style.setProperty('--paper-scale', '.72');
     }
     function move(event) {
       if (!active || event.pointerId !== pointerId) return;
@@ -374,6 +387,10 @@
       var dx = Math.max(-90, Math.min(90, event.clientX - (rect.left + rect.width / 2)));
       var dy = Math.max(-90, Math.min(90, event.clientY - (rect.top + rect.height / 2)));
       crumpleAt(dx, dy);
+      root.style.setProperty('--paper-dx', dx + 'px');
+      root.style.setProperty('--paper-dy', dy + 'px');
+      root.style.setProperty('--paper-rot', Math.max(-12, Math.min(12, dx * .045)) + 'deg');
+      root.style.setProperty('--paper-scale', (.72 - Math.min(.18, (Math.abs(dx) + Math.abs(dy)) / 900)).toFixed(3));
     }
     hit.addEventListener('pointerdown', down);
     hit.addEventListener('pointermove', move);
