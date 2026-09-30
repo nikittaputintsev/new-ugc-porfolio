@@ -128,6 +128,8 @@
   /* ---------- Video bank ---------- */
   .bank { padding: 40px 0 70px; }
   .bank h2 { font-family: var(--heading); font-weight: 700; font-size: clamp(38px, 4.4vw, 64px); letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 36px; }
+  .personal-content { margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); padding: 70px max(16px, calc((100vw - 1110px) / 2)) 100px; background: var(--accent); color: #fff; }
+  .personal-content h2 { color: #fff; }
   .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
   .grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px 18px; row-gap: 56px; }
   .circular-carousel { position: relative; height: clamp(480px, 56vw, 560px); margin: 0 -16px; perspective: 1500px; overflow: hidden; touch-action: pan-y; }
@@ -272,7 +274,7 @@
       </div>
     </section>
 
-    <section class="bank">
+    <section class="bank personal-content">
       <h2>Personal Content</h2>
       <div class="grid2">
         <div class="ph h round"><iframe src="https://player.vimeo.com/video/1231415868?badge=0&amp;byline=0&amp;title=0&amp;portrait=0&amp;dnt=1" title="Clarity comes from chaos" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
